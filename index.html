@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pembelajaran 3D: Operasi Bilangan Bulat</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Three.js and OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+            overflow-x: hidden;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.4);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.7);
+        }
+        /* Glassmorphism styling */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Pulse & Glow effects */
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+        }
+        .canvas-container {
+            touch-action: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased">
+
+    <!-- Navbar Header -->
+    <header class="bg-slate-800/80 backdrop-blur-md border-b border-slate-700/60 sticky top-0 z-40 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid me-0 fa-arrow-right-left text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg lg:text-xl font-bold bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
+                        Math3D: Garis Bilangan Bulat
+                    </h1>
+                    <p class="text-xs text-slate-400">Media Pembelajaran Interaktif Operasi Hitung Matematika</p>
+                </div>
+            </div>
+
+            <!-- Mode Switcher Tabs -->
+            <div class="flex items-center gap-2 bg-slate-900/80 p-1 rounded-xl border border-slate-700/80 text-xs sm:text-sm">
+                <button id="tab-exploration" onclick="switchMode('exploration')" class="px-3 py-1.5 rounded-lg font-semibold transition-all duration-200 bg-indigo-600 text-white shadow-md">
+                    <i class="fa-solid fa-compass mr-1.5"></i>Eksplorasi
+                </button>
+                <button id="tab-quiz" onclick="switchMode('quiz')" class="px-3 py-1.5 rounded-lg font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i class="fa-solid fa-gamepad mr-1.5"></i>Tantangan Kuis
+                </button>
+                <button id="tab-concept" onclick="switchMode('concept')" class="px-3 py-1.5 rounded-lg font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i class="fa-solid fa-book-open mr-1.5"></i>Konsep Dasar
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+        
+        <!-- Left Column: Controls & Input Panel (4 Cols) -->
+        <section class="lg:col-span-4 flex flex-col gap-4">
+            
+            <!-- EXPLORATION PANEL -->
+            <div id="panel-exploration" class="bg-slate-800/90 rounded-2xl border border-slate-700/70 p-5 shadow-xl flex flex-col gap-4">
+                <div class="flex items-center justify-between border-b border-slate-700/80 pb-3">
+                    <div class="flex items-center gap-2 text-indigo-400 font-bold text-base">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Input Parameter Operasi</span>
+                    </div>
+                    <button onclick="resetInputs()" class="text-xs text-slate-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
+                        <i class="fa-solid fa-rotate-right"></i> Reset
+                    </button>
+                </div>
+
+                <!-- Input Controls -->
+                <form id="calc-form" onsubmit="event.preventDefault(); triggerSimulation();" class="flex flex-col gap-4">
+                    
+                    <!-- Bilangan Pertama (A) -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="text-xs font-semibold text-slate-300">Bilangan Pertama ($A$):</label>
+                            <span id="val-a-disp" class="text-xs font-bold text-indigo-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-700">0</span>
+                        </div>
+                        <input type="range" id="input-a" min="-15" max="15" value="3" step="1" 
+                               oninput="updateValueDisplays()" 
+                               class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                        <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                            <span>-15</span>
+                            <span>0</span>
+                            <span>+15</span>
+                        </div>
+                    </div>
+
+                    <!-- Operator Selector -->
+                    <div>
+                        <label class="text-xs font-semibold text-slate-300 mb-1.5 block">Operasi Hitung:</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" onclick="setOperator('+')" id="op-btn-plus" class="op-btn py-2.5 rounded-xl border border-indigo-500/50 bg-indigo-600/30 text-indigo-200 font-bold text-lg hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-plus text-xs"></i> Tambah
+                            </button>
+                            <button type="button" onclick="setOperator('-')" id="op-btn-minus" class="op-btn py-2.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 font-bold text-lg hover:bg-slate-700 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-minus text-xs"></i> Kurang
+                            </button>
+                            <button type="button" onclick="setOperator('*')" id="op-btn-multiply" class="op-btn py-2.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 font-bold text-lg hover:bg-slate-700 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-xmark text-xs"></i> Kali
+                            </button>
+                        </div>
+                        <input type="hidden" id="input-op" value="+">
+                    </div>
+
+                    <!-- Bilangan Kedua (B) -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="text-xs font-semibold text-slate-300">Bilangan Kedua ($B$):</label>
+                            <span id="val-b-disp" class="text-xs font-bold text-indigo-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-700">0</span>
+                        </div>
+                        <input type="range" id="input-b" min="-15" max="15" value="-5" step="1" 
+                               oninput="updateValueDisplays()" 
+                               class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                        <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                            <span>-15</span>
+                            <span>0</span>
+                            <span>+15</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Preset Buttons -->
+                    <div>
+                        <label class="text-[11px] font-semibold text-slate-400 mb-1.5 block">Contoh Kasus Populer:</label>
+                        <div class="flex flex-wrap gap-1.5">
+                            <button type="button" onclick="loadPreset(3, '+', 4)" class="text-xs bg-slate-900/80 hover:bg-slate-700 border border-slate-700 px-2.5 py-1 rounded-lg text-slate-300">3 + 4</button>
+                            <button type="button" onclick="loadPreset(4, '+', -6)" class="text-xs bg-slate-900/80 hover:bg-slate-700 border border-slate-700 px-2.5 py-1 rounded-lg text-slate-300">4 + (-6)</button>
+                            <button type="button" onclick="loadPreset(2, '-', 5)" class="text-xs bg-slate-900/80 hover:bg-slate-700 border border-slate-700 px-2.5 py-1 rounded-lg text-slate-300">2 - 5</button>
+                            <button type="button" onclick="loadPreset(-3, '-', -7)" class="text-xs bg-slate-900/80 hover:bg-slate-700 border border-slate-700 px-2.5 py-1 rounded-lg text-slate-300">-3 - (-7)</button>
+                            <button type="button" onclick="loadPreset(3, '*', -2)" class="text-xs bg-slate-900/80 hover:bg-slate-700 border border-slate-700 px-2.5 py-1 rounded-lg text-slate-300">3 × (-2)</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-sm mt-2">
+                        <i class="fa-solid fa-play"></i> Simulasikan Pergerakan 3D
+                    </button>
+                </form>
+            </div>
+
+            <!-- QUIZ PANEL (Hidden by default) -->
+            <div id="panel-quiz" class="hidden bg-slate-800/90 rounded-2xl border border-slate-700/70 p-5 shadow-xl flex-col gap-4">
+                <div class="flex items-center justify-between border-b border-slate-700/80 pb-3">
+                    <div class="flex items-center gap-2 text-emerald-400 font-bold text-base">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span>Tantangan Interaktif</span>
+                    </div>
+                    <span id="quiz-score" class="text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-full">
+                        Skor: <span id="score-val">0</span>
+                    </span>
+                </div>
+
+                <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-700/60 text-center">
+                    <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">Hitunglah Hasil Operasi Berikut:</p>
+                    <div id="quiz-expression" class="text-2xl font-black text-amber-300 my-2">? + ?</div>
+                    <p class="text-[11px] text-slate-400">Gunakan simulator 3D atau ketik jawabanmu di bawah:</p>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="number" id="quiz-answer" placeholder="Masukkan angka..." class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-white font-bold text-center focus:outline-none focus:border-emerald-500">
+                    <button onclick="checkQuizAnswer()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-600/20 transition-all">
+                        Cek
+                    </button>
+                </div>
+
+                <div id="quiz-feedback" class="hidden rounded-xl p-3 text-xs font-medium border text-center"></div>
+
+                <button onclick="nextQuizQuestion()" class="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+                    <i class="fa-solid fa-forward"></i> Soal Berikutnya
+                </button>
+            </div>
+
+            <!-- CONCEPT REFERENCE PANEL (Hidden by default) -->
+            <div id="panel-concept" class="hidden bg-slate-800/90 rounded-2xl border border-slate-700/70 p-5 shadow-xl flex-col gap-3 text-xs leading-relaxed text-slate-300">
+                <h3 class="font-bold text-indigo-400 text-sm flex items-center gap-2 border-b border-slate-700/80 pb-2">
+                    <i class="fa-solid fa-lightbulb"></i> Aturan Garis Bilangan 3D
+                </h3>
+                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 space-y-2">
+                    <div class="flex items-start gap-2">
+                        <span class="bg-emerald-500/20 text-emerald-400 font-bold px-1.5 py-0.5 rounded text-[10px]">1</span>
+                        <p><strong class="text-emerald-400">Positif (+):</strong> Bergerak ke arah <strong class="text-white">KANAN</strong> (Nilai bertambah besar).</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="bg-rose-500/20 text-rose-400 font-bold px-1.5 py-0.5 rounded text-[10px]">2</span>
+                        <p><strong class="text-rose-400">Negatif (-):</strong> Bergerak ke arah <strong class="text-white">KIRI</strong> (Nilai bertambah kecil).</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="bg-amber-500/20 text-amber-400 font-bold px-1.5 py-0.5 rounded text-[10px]">3</span>
+                        <p><strong class="text-amber-400">Pengurangan:</strong> Sama dengan membalikkan arah gerakan lawan operasinya.</p>
+                    </div>
+                </div>
+                <div class="bg-indigo-950/40 p-3 rounded-xl border border-indigo-800/40">
+                    <p class="font-bold text-indigo-300 mb-1">Dua Tanda Berdekatan:</p>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 text-[11px]">
+                        <li>$+ (+a) \rightarrow +a$ (Ke kanan)</li>
+                        <li>$+ (-a) \rightarrow -a$ (Ke kiri)</li>
+                        <li>$- (+a) \rightarrow -a$ (Ke kiri)</li>
+                        <li>$- (-a) \rightarrow +a$ (Ke kanan / Berbalik)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mathematical Explanation Card -->
+            <div class="bg-slate-800/90 rounded-2xl border border-slate-700/70 p-4 shadow-xl flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Penjelasan Langkah Matematika</span>
+                    <i class="fa-solid fa-graduation-cap text-indigo-400"></i>
+                </div>
+                <div id="math-expression-display" class="text-xl font-black text-white bg-slate-900/90 p-3 rounded-xl border border-slate-700 text-center font-mono tracking-wide">
+                    3 + (-5) = -2
+                </div>
+                <div id="step-by-step-narration" class="text-xs text-slate-300 bg-slate-900/50 p-3 rounded-xl border border-slate-800/80 leading-relaxed min-h-[70px]">
+                    Tekan tombol "Simulasikan Pergerakan 3D" untuk melihat jalannya animasi dan langkah pergerakan angka pada garis bilangan.
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Right Column: 3D Canvas Viewport (8 Cols) -->
+        <section class="lg:col-span-8 flex flex-col gap-4">
+            
+            <div class="relative bg-slate-950 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex-1 min-h-[420px] lg:min-h-[560px] flex flex-col">
+                
+                <!-- Overlay Header Controls -->
+                <div class="absolute top-4 left-4 right-4 z-10 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+                    
+                    <!-- View Status Badge -->
+                    <div class="pointer-events-auto bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-2">
+                        <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span id="status-text">Siap untuk simulasi</span>
+                    </div>
+
+                    <!-- Camera Preset Controls -->
+                    <div class="pointer-events-auto flex items-center gap-1.5 bg-slate-900/80 backdrop-blur-md p-1 rounded-xl border border-slate-700/80">
+                        <button onclick="resetCamera('iso')" class="p-2 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-lg text-xs transition-colors" title="Kamera Isometrik 3D">
+                            <i class="fa-solid fa-cube"></i> 3D
+                        </button>
+                        <button onclick="resetCamera('front')" class="p-2 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-lg text-xs transition-colors" title="Tampilan Depan (2D Flat)">
+                            <i class="fa-solid fa-eye"></i> Depan
+                        </button>
+                        <button onclick="toggleAudio()" id="btn-audio" class="p-2 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-lg text-xs transition-colors" title="Suara / Audio Effects">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Three.js Canvas Container -->
+                <div id="canvas-container" class="w-full flex-1 h-full cursor-grab active:cursor-grabbing"></div>
+
+                <!-- Bottom Floating Legend & Speed Controller -->
+                <div class="absolute bottom-4 left-4 right-4 z-10 flex flex-col sm:flex-row items-center justify-between gap-2 pointer-events-none">
+                    
+                    <!-- Legend Tags -->
+                    <div class="pointer-events-auto flex items-center gap-2 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/80 text-[11px]">
+                        <span class="flex items-center gap-1 text-emerald-400 font-semibold">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Langkah 1 (Start)
+                        </span>
+                        <span class="text-slate-600">|</span>
+                        <span class="flex items-center gap-1 text-amber-400 font-semibold">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Langkah 2 (Operasi)
+                        </span>
+                        <span class="text-slate-600">|</span>
+                        <span class="flex items-center gap-1 text-purple-400 font-semibold">
+                            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span> Hasil Akhir
+                        </span>
+                    </div>
+
+                    <!-- Animation Speed Slider -->
+                    <div class="pointer-events-auto bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/80 flex items-center gap-2 text-xs">
+                        <span class="text-slate-400"><i class="fa-solid fa-gauge-high"></i> Kecepatan:</span>
+                        <input type="range" id="anim-speed" min="0.5" max="2.5" step="0.5" value="1" class="w-20 accent-indigo-500">
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // Global State & Variables
+        let scene, camera, renderer, controls;
+        let numLineGroup, characterGroup, arrowGroup, markerGroup;
+        let isAudioMuted = false;
+        let isAnimating = false;
+        let currentMode = 'exploration'; // exploration, quiz, concept
+
+        // Audio Synth Context
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+        }
+
+        function playSound(type) {
+            if (isAudioMuted) return;
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+                if (type === 'hop') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.exponentialRampToValueAtTime(600, now + 0.15);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (type === 'land') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(180, now);
+                    osc.frequency.exponentialRampToValueAtTime(80, now + 0.1);
+                    gain.gain.setValueAtTime(0.4, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                } else if (type === 'win') {
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.type = 'sine';
+                        o.frequency.setValueAtTime(freq, now + idx * 0.1);
+                        g.gain.setValueAtTime(0.2, now + idx * 0.1);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.25);
+                        o.start(now + idx * 0.1);
+                        o.stop(now + idx * 0.1 + 0.25);
+                    });
+                }
+            } catch (e) {
+                console.log("Audio not allowed yet");
+            }
+        }
+
+        function toggleAudio() {
+            isAudioMuted = !isAudioMuted;
+            const btn = document.getElementById('btn-audio');
+            if (isAudioMuted) {
+                btn.innerHTML = '<i class="fa-solid fa-volume-xmark text-rose-400"></i>';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                playSound('hop');
+            }
+        }
+
+        function init3DScene() {
+            const container = document.getElementById('canvas-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0f172a); // Slate-900
+            scene.fog = new THREE.FogExp2(0x0f172a, 0.015);
+
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            camera.position.set(0, 10, 26);
+
+            // Renderer setup
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(renderer.domElement);
+
+            // OrbitControls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.maxPolarAngle = Math.PI / 2 - 0.05; // Don't go under floor
+            controls.minDistance = 8;
+            controls.maxDistance = 50;
+            controls.target.set(0, 2, 0);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(15, 25, 15);
+            dirLight.castShadow = true;
+            dirLight.shadow.mapSize.width = 2048;
+            dirLight.shadow.mapSize.height = 2048;
+            dirLight.shadow.camera.near = 0.5;
+            dirLight.shadow.camera.far = 80;
+            dirLight.shadow.camera.left = -25;
+            dirLight.shadow.camera.right = 25;
+            dirLight.shadow.camera.top = 15;
+            dirLight.shadow.camera.bottom = -15;
+            scene.add(dirLight);
+
+            const pointLight = new THREE.PointLight(0x6366f1, 1.2, 30);
+            pointLight.position.set(0, 8, 5);
+            scene.add(pointLight);
+
+            // Ground plane grid
+            const gridHelper = new THREE.GridHelper(60, 60, 0x334155, 0x1e293b);
+            gridHelper.position.y = -0.01;
+            scene.add(gridHelper);
+
+            // Parent Groups
+            numLineGroup = new THREE.Group();
+            characterGroup = new THREE.Group();
+            arrowGroup = new THREE.Group();
+            markerGroup = new THREE.Group();
+
+            scene.add(numLineGroup);
+            scene.add(characterGroup);
+            scene.add(arrowGroup);
+            scene.add(markerGroup);
+
+            // Build initial Objects
+            buildNumberLine();
+            buildCharacter();
+
+            // Resize Event
+            window.addEventListener('resize', onWindowResize);
+
+            // Start Render Loop
+            animateLoop();
+        }
+
+        function createTextSprite(text, isZero = false, isMajor = false) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = 'transparent';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = isZero ? 'Bold 42px "Plus Jakarta Sans", sans-serif' : (isMajor ? 'Bold 36px "Plus Jakarta Sans", sans-serif' : '30px "Plus Jakarta Sans", sans-serif');
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            if (isZero) {
+                ctx.fillStyle = '#f59e0b'; // Amber
+            } else if (text.startsWith('-')) {
+                ctx.fillStyle = '#f43f5e'; // Rose / Negative
+            } else {
+                ctx.fillStyle = '#10b981'; // Emerald / Positive
+            }
+
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(2, 1, 1);
+            return sprite;
+        }
+
+        function buildNumberLine() {
+            numLineGroup.clear();
+
+            const minVal = -20;
+            const maxVal = 20;
+            const lineLength = maxVal - minVal;
+
+            // Main Beam (3D Metallic Rod)
+            const rodGeo = new THREE.CylinderGeometry(0.2, 0.2, lineLength + 2, 16);
+            rodGeo.rotateZ(Math.PI / 2);
+            const rodMat = new THREE.MeshStandardMaterial({
+                color: 0x475569,
+                metalness: 0.8,
+                roughness: 0.2
+            });
+            const rodMesh = new THREE.Mesh(rodGeo, rodMat);
+            rodMesh.position.y = 0;
+            rodMesh.castShadow = true;
+            rodMesh.receiveShadow = true;
+            numLineGroup.add(rodMesh);
+
+            // Tick Marks & Numbers
+            for (let i = minVal; i <= maxVal; i++) {
+                const isZero = (i === 0);
+                const isMajor = (i % 5 === 0);
+
+                // Tick Geometry
+                const tickHeight = isZero ? 0.9 : (isMajor ? 0.6 : 0.35);
+                const tickRadius = isZero ? 0.08 : (isMajor ? 0.06 : 0.04);
+                const tickGeo = new THREE.CylinderGeometry(tickRadius, tickRadius, tickHeight, 12);
+                
+                let tickColor = 0x94a3b8;
+                if (isZero) tickColor = 0xf59e0b; // Gold zero
+                else if (isMajor) tickColor = 0x6366f1;
+
+                const tickMat = new THREE.MeshStandardMaterial({ color: tickColor, roughness: 0.3 });
+                const tickMesh = new THREE.Mesh(tickGeo, tickMat);
+                tickMesh.position.set(i, tickHeight / 2, 0);
+                tickMesh.castShadow = true;
+                numLineGroup.add(tickMesh);
+
+                // Tick Base Disc
+                const baseGeo = new THREE.CylinderGeometry(0.18, 0.18, 0.05, 12);
+                const baseMat = new THREE.MeshStandardMaterial({ color: tickColor });
+                const baseMesh = new THREE.Mesh(baseGeo, baseMat);
+                baseMesh.position.set(i, 0, 0);
+                numLineGroup.add(baseMesh);
+
+                // Number Labels (Sprites)
+                const sprite = createTextSprite(i.toString(), isZero, isMajor);
+                sprite.position.set(i, -0.9, 0);
+                numLineGroup.add(sprite);
+            }
+
+            // Arrowheads at the ends of number line
+            const coneGeo = new THREE.ConeGeometry(0.4, 0.8, 16);
+            const coneMat = new THREE.MeshStandardMaterial({ color: 0x6366f1, metalness: 0.5 });
+            
+            const rightArrow = new THREE.Mesh(coneGeo, coneMat);
+            rightArrow.rotation.z = -Math.PI / 2;
+            rightArrow.position.set(maxVal + 1.2, 0, 0);
+            numLineGroup.add(rightArrow);
+
+            const leftArrow = new THREE.Mesh(coneGeo, coneMat);
+            leftArrow.rotation.z = Math.PI / 2;
+            leftArrow.position.set(minVal - 1.2, 0, 0);
+            numLineGroup.add(leftArrow);
+        }
+
+        function buildCharacter() {
+            characterGroup.clear();
+
+            // Mascot Body (Cute Robot / Pawn)
+            const bodyGeo = new THREE.SphereGeometry(0.45, 32, 32);
+            const bodyMat = new THREE.MeshStandardMaterial({
+                color: 0x6366f1,
+                roughness: 0.2,
+                metalness: 0.3
+            });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.position.y = 0.55;
+            body.castShadow = true;
+            characterGroup.add(body);
+
+            // Head / Visor
+            const headGeo = new THREE.SphereGeometry(0.3, 24, 24);
+            const headMat = new THREE.MeshStandardMaterial({
+                color: 0x38bdf8,
+                emissive: 0x0284c7,
+                emissiveIntensity: 0.5,
+                roughness: 0.1
+            });
+            const head = new THREE.Mesh(headGeo, headMat);
+            head.position.set(0, 0.8, 0.15);
+            characterGroup.add(head);
+
+            // Eyes
+            const eyeGeo = new THREE.SphereGeometry(0.06, 12, 12);
+            const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+            const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+            leftEye.position.set(-0.1, 0.85, 0.4);
+            const rightEye = leftEye.clone();
+            rightEye.position.x = 0.1;
+            characterGroup.add(leftEye);
+            characterGroup.add(rightEye);
+
+            // Floating Ring / Base Indicator
+            const ringGeo = new THREE.RingGeometry(0.35, 0.48, 32);
+            ringGeo.rotateX(-Math.PI / 2);
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.position.y = 0.05;
+            characterGroup.add(ring);
+
+            // Initial Position
+            characterGroup.position.set(0, 0, 0);
+        }
+
+        function drawCurvedArrow(fromX, toX, arcHeight, colorHex, labelText) {
+            if (fromX === toX) return;
+
+            const distance = Math.abs(toX - fromX);
+            const midX = (fromX + toX) / 2;
+            const height = arcHeight || Math.min(2 + distance * 0.25, 6);
+
+            // Quadratic Bezier Curve for smooth trajectory
+            const curve = new THREE.QuadraticBezierCurve3(
+                new THREE.Vector3(fromX, 0.6, 0),
+                new THREE.Vector3(midX, height, 0),
+                new THREE.Vector3(toX, 0.6, 0)
+            );
+
+            const points = curve.getPoints(40);
+            const tubeGeo = new THREE.TubeGeometry(curve, 40, 0.1, 8, false);
+            const tubeMat = new THREE.MeshStandardMaterial({
+                color: colorHex,
+                emissive: colorHex,
+                emissiveIntensity: 0.3,
+                roughness: 0.3
+            });
+            const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
+            tubeMesh.castShadow = true;
+            arrowGroup.add(tubeMesh);
+
+            // Arrow Cone Tip at destination
+            const tangent = curve.getTangent(1.0);
+            const coneGeo = new THREE.ConeGeometry(0.3, 0.7, 16);
+            const coneMat = new THREE.MeshStandardMaterial({ color: colorHex, emissive: colorHex, emissiveIntensity: 0.4 });
+            const coneMesh = new THREE.Mesh(coneGeo, coneMat);
+            
+            coneMesh.position.set(toX, 0.6, 0);
+            
+            // Align cone to tangent direction
+            const axis = new THREE.Vector3(0, 1, 0);
+            coneMesh.quaternion.setFromUnitVectors(axis, tangent);
+            arrowGroup.add(coneMesh);
+
+            // Label on top of arc
+            if (labelText) {
+                const labelCanvas = document.createElement('canvas');
+                labelCanvas.width = 256;
+                labelCanvas.height = 64;
+                const ctx = labelCanvas.getContext('2d');
+                ctx.fillStyle = '#0f172a';
+                ctx.roundRect(10, 10, 236, 44, 20);
+                ctx.fill();
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = '#' + colorHex.toString(16).padStart(6, '0');
+                ctx.stroke();
+
+                ctx.font = 'Bold 28px "Plus Jakarta Sans", sans-serif';
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(labelText, 128, 32);
+
+                const texture = new THREE.CanvasTexture(labelCanvas);
+                const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true });
+                const labelSprite = new THREE.Sprite(spriteMat);
+                labelSprite.scale.set(3, 0.8, 1);
+                labelSprite.position.set(midX, height + 0.7, 0);
+                arrowGroup.add(labelSprite);
+            }
+        }
+
+        function createResultMarker(x) {
+            markerGroup.clear();
+
+            // Glowing Star / Diamond Pin
+            const geo = new THREE.OctahedronGeometry(0.5, 0);
+            const mat = new THREE.MeshStandardMaterial({
+                color: 0xa855f7, // Purple
+                emissive: 0x9333ea,
+                emissiveIntensity: 0.8,
+                roughness: 0.1
+            });
+            const pin = new THREE.Mesh(geo, mat);
+            pin.position.set(x, 2.2, 0);
+            markerGroup.add(pin);
+
+            // Vertical Light Beacon
+            const cylinderGeo = new THREE.CylinderGeometry(0.08, 0.08, 3, 16);
+            const cylinderMat = new THREE.MeshBasicMaterial({
+                color: 0xc084fc,
+                transparent: true,
+                opacity: 0.6
+            });
+            const beacon = new THREE.Mesh(cylinderGeo, cylinderMat);
+            beacon.position.set(x, 1.5, 0);
+            markerGroup.add(beacon);
+
+            // Animate continuous rotation
+            pin.userData = { isMarkerPin: true };
+        }
+
+        function animateCharacterHop(startPos, endPos, duration, onComplete) {
+            const startTime = performance.now();
+            const speedFactor = parseFloat(document.getElementById('anim-speed').value) || 1;
+            const adjustedDuration = duration / speedFactor;
+
+            playSound('hop');
+
+            function step(now) {
+                const elapsed = (now - startTime) / 1000;
+                let t = elapsed / adjustedDuration;
+
+                if (t > 1) t = 1;
+
+                // Lerp X position
+                const currentX = THREE.MathUtils.lerp(startPos, endPos, t);
+                
+                // Parabolic Arc Y Position
+                const arcMaxHeight = Math.min(1.5 + Math.abs(endPos - startPos) * 0.2, 4);
+                const currentY = Math.sin(t * Math.PI) * arcMaxHeight;
+
+                characterGroup.position.set(currentX, currentY, 0);
+
+                if (t < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    characterGroup.position.set(endPos, 0, 0);
+                    playSound('land');
+                    if (onComplete) onComplete();
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        function triggerSimulation() {
+            if (isAnimating) return;
+
+            const valA = parseInt(document.getElementById('input-a').value);
+            const valB = parseInt(document.getElementById('input-b').value);
+            const op = document.getElementById('input-op').value;
+
+            // Clear previous visual overlays
+            arrowGroup.clear();
+            markerGroup.clear();
+
+            isAnimating = true;
+            updateStatus('Sedang mensimulasikan...', 'amber');
+
+            // Reset Character to Origin 0
+            characterGroup.position.set(0, 0, 0);
+
+            let result = 0;
+            let step1End = valA;
+            let step2End = 0;
+
+            if (op === '+') {
+                result = valA + valB;
+                step2End = result;
+            } else if (op === '-') {
+                result = valA - valB;
+                step2End = result;
+            } else if (op === '*') {
+                result = valA * valB;
+                step2End = result;
+            }
+
+            // Update Math Narration Box
+            updateMathNarration(valA, op, valB, result);
+
+            // STEP 1: Hop from 0 to Bilangan Pertama (A)
+            const step1Duration = Math.max(0.8, Math.abs(valA) * 0.12);
+            
+            setTimeout(() => {
+                // Draw Arc Arrow 1 (0 -> A)
+                drawCurvedArrow(0, valA, null, 0x10b981, `Langkah 1: ${valA >= 0 ? '+' : ''}${valA}`);
+
+                animateCharacterHop(0, valA, step1Duration, () => {
+                    
+                    // STEP 2: Hop from A to Final Result
+                    setTimeout(() => {
+                        let arcColor = (op === '-' || valB < 0) ? 0xf59e0b : 0x3b82f6;
+                        let step2Label = "";
+
+                        if (op === '+') {
+                            step2Label = `Langkah 2: +(${valB})`;
+                        } else if (op === '-') {
+                            step2Label = `Langkah 2: -(${valB}) = ${valB < 0 ? '+' + Math.abs(valB) : '-' + valB}`;
+                        } else if (op === '*') {
+                            step2Label = `Langkah 2: Perkalian (${valA} × ${valB})`;
+                        }
+
+                        // Higher arc height so arrows don't overlap
+                        const arcHeight = Math.min(3 + Math.abs(step2End - valA) * 0.25, 7);
+                        drawCurvedArrow(valA, step2End, arcHeight, arcColor, step2Label);
+
+                        const step2Duration = Math.max(0.8, Math.abs(step2End - valA) * 0.12);
+
+                        animateCharacterHop(valA, step2End, step2Duration, () => {
+                            // Finish Simulation
+                            createResultMarker(result);
+                            playSound('win');
+                            isAnimating = false;
+                            updateStatus('Simulasi Selesai!', 'emerald');
+                        });
+
+                    }, 400);
+
+                });
+            }, 300);
+        }
+
+        function updateMathNarration(a, op, b, result) {
+            const exprDisplay = document.getElementById('math-expression-display');
+            const narration = document.getElementById('step-by-step-narration');
+
+            let opSym = op === '*' ? '×' : op;
+            let formattedB = b < 0 ? `(${b})` : b;
+            let fullExpr = `${a} ${opSym} ${formattedB} = ${result}`;
+
+            exprDisplay.textContent = fullExpr;
+
+            let story = `<strong>Langkah 1:</strong> Mulai dari titik awal <strong>0</strong>. Bergerak ke <strong>${a}</strong> (${a >= 0 ? 'ke kanan' : 'ke kiri'}).<br>`;
+
+            if (op === '+') {
+                if (b >= 0) {
+                    story += `<strong>Langkah 2:</strong> Ditambah <strong>+${b}</strong>, maka lanjutkan bergerak <strong>${b} langkah KE KANAN</strong>.`;
+                } else {
+                    story += `<strong>Langkah 2:</strong> Ditambah <strong>${b}</strong>, karena nilainya negatif, maka bergerak <strong>${Math.abs(b)} langkah KE KIRI</strong>.`;
+                }
+            } else if (op === '-') {
+                if (b >= 0) {
+                    story += `<strong>Langkah 2:</strong> Dikurang <strong>+${b}</strong>, artinya bergerak berlawanan arah yaitu <strong>${b} langkah KE KIRI</strong>.`;
+                } else {
+                    story += `<strong>Langkah 2:</strong> Dikurang <strong>(${b})</strong>. Mengurangi bilangan negatif berbalik menjadi <strong>penjumlahan (+${Math.abs(b)})</strong>, bergerak <strong>${Math.abs(b)} langkah KE KANAN</strong>.`;
+                }
+            } else if (op === '*') {
+                story += `<strong>Langkah 2:</strong> Operasi perkalian <strong>${a} × ${formattedB}</strong> menghasilkan posisi akhir pada titik <strong>${result}</strong>.`;
+            }
+
+            story += `<br><span class="text-indigo-400 font-bold">Hasil Akhir = ${result}</span>`;
+            narration.innerHTML = story;
+        }
+
+        function updateValueDisplays() {
+            const valA = document.getElementById('input-a').value;
+            const valB = document.getElementById('input-b').value;
+            document.getElementById('val-a-disp').textContent = valA >= 0 ? `+${valA}` : valA;
+            document.getElementById('val-b-disp').textContent = valB >= 0 ? `+${valB}` : valB;
+        }
+
+        function setOperator(op) {
+            document.getElementById('input-op').value = op;
+            
+            const btns = {
+                '+': document.getElementById('op-btn-plus'),
+                '-': document.getElementById('op-btn-minus'),
+                '*': document.getElementById('op-btn-multiply')
+            };
+
+            Object.keys(btns).forEach(key => {
+                if (key === op) {
+                    btns[key].className = "op-btn py-2.5 rounded-xl border border-indigo-500 bg-indigo-600 text-white font-bold text-lg shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-1.5 transition-all";
+                } else {
+                    btns[key].className = "op-btn py-2.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 font-bold text-lg hover:bg-slate-700 hover:text-white flex items-center justify-center gap-1.5 transition-all";
+                }
+            });
+        }
+
+        function loadPreset(a, op, b) {
+            document.getElementById('input-a').value = a;
+            document.getElementById('input-b').value = b;
+            setOperator(op);
+            updateValueDisplays();
+            triggerSimulation();
+        }
+
+        function resetInputs() {
+            document.getElementById('input-a').value = 3;
+            document.getElementById('input-b').value = -5;
+            setOperator('+');
+            updateValueDisplays();
+            arrowGroup.clear();
+            markerGroup.clear();
+            characterGroup.position.set(0, 0, 0);
+            updateStatus('Sistem direset', 'emerald');
+        }
+
+        function updateStatus(msg, color) {
+            document.getElementById('status-text').textContent = msg;
+            const dot = document.getElementById('status-dot');
+            dot.className = `w-2.5 h-2.5 rounded-full bg-${color}-500 animate-pulse`;
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+
+            const tabs = {
+                'exploration': document.getElementById('tab-exploration'),
+                'quiz': document.getElementById('tab-quiz'),
+                'concept': document.getElementById('tab-concept')
+            };
+
+            const panels = {
+                'exploration': document.getElementById('panel-exploration'),
+                'quiz': document.getElementById('panel-quiz'),
+                'concept': document.getElementById('panel-concept')
+            };
+
+            Object.keys(tabs).forEach(m => {
+                if (m === mode) {
+                    tabs[m].className = "px-3 py-1.5 rounded-lg font-semibold transition-all duration-200 bg-indigo-600 text-white shadow-md";
+                    panels[m].classList.remove('hidden');
+                    panels[m].classList.add('flex');
+                } else {
+                    tabs[m].className = "px-3 py-1.5 rounded-lg font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-800";
+                    panels[m].classList.add('hidden');
+                    panels[m].classList.remove('flex');
+                }
+            });
+
+            if (mode === 'quiz') {
+                nextQuizQuestion();
+            }
+        }
+
+        let currentQuizAnswer = 0;
+        let quizScore = 0;
+
+        function nextQuizQuestion() {
+            const ops = ['+', '-'];
+            const randOp = ops[Math.floor(Math.random() * ops.length)];
+            const valA = Math.floor(Math.random() * 16) - 8;
+            const valB = Math.floor(Math.random() * 16) - 8;
+
+            if (randOp === '+') currentQuizAnswer = valA + valB;
+            else currentQuizAnswer = valA - valB;
+
+            let formattedB = valB < 0 ? `(${valB})` : valB;
+            document.getElementById('quiz-expression').textContent = `${valA} ${randOp} ${formattedB} = ?`;
+            document.getElementById('quiz-answer').value = '';
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.add('hidden');
+
+            // Pre-load in exploration sliders for quick visual help
+            document.getElementById('input-a').value = valA;
+            document.getElementById('input-b').value = valB;
+            setOperator(randOp);
+            updateValueDisplays();
+        }
+
+        function checkQuizAnswer() {
+            const userAns = parseInt(document.getElementById('quiz-answer').value);
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            if (!isNaN(userAns) && userAns === currentQuizAnswer) {
+                quizScore += 10;
+                document.getElementById('score-val').textContent = quizScore;
+                feedback.className = "rounded-xl p-3 text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-center";
+                feedback.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Benar sekali! Jawabannya ' + currentQuizAnswer + '. Mari kita lihat simulasinya!';
+                playSound('win');
+                triggerSimulation();
+            } else {
+                feedback.className = "rounded-xl p-3 text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 text-center";
+                feedback.innerHTML = '<i class="fa-solid fa-circle-xmark mr-1"></i> Belum tepat. Coba hitung lagi atau lihat simulasi 3D!';
+            }
+        }
+
+        function resetCamera(viewType) {
+            if (viewType === 'iso') {
+                camera.position.set(0, 12, 24);
+                controls.target.set(0, 2, 0);
+            } else if (viewType === 'front') {
+                camera.position.set(0, 3, 28);
+                controls.target.set(0, 1, 0);
+            }
+            controls.update();
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('canvas-container');
+            if (!container) return;
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function animateLoop(timestamp) {
+            requestAnimationFrame(animateLoop);
+            controls.update();
+
+            // Rotate marker pin
+            markerGroup.children.forEach(child => {
+                if (child.userData && child.userData.isMarkerPin) {
+                    child.rotation.y += 0.03;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            init3DScene();
+            updateValueDisplays();
+            // Default initial simulation
+            triggerSimulation();
+        };
+    </script>
+</body>
+</html>
