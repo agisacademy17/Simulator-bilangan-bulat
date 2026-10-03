@@ -364,7 +364,7 @@
     </div>
 
     <!-- ==================== HALAMAN KEDUA: PETA PETUALANGAN (ADVENTURE MAP) ==================== -->
-    <div id="map-screen" class="fixed inset-0 z-45 hidden flex-col items-center justify-between map-bg p-4 sm:p-6 overflow-y-auto transition-opacity duration-300">
+    <div id="map-screen" class="fixed inset-0 z-40 hidden flex flex-col items-center justify-between map-bg p-4 sm:p-6 lg:p-8 overflow-y-auto transition-opacity duration-300">
         
         <!-- Background Ambient Floating Mist & Stars -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden">
@@ -373,122 +373,122 @@
             <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#34d399_1px,transparent_1px)] [background-size:24px_24px]"></div>
         </div>
 
-        <!-- Top Navigation Bar for Map: Badge di kiri, Tombol Kembali & Home di KANAN ATAS -->
-        <div class="w-full max-w-6xl flex justify-between items-center relative z-10 pt-2">
-            <div class="flex items-center gap-2 bg-slate-900/80 border border-slate-700/80 px-3.5 py-1.5 rounded-full text-xs text-slate-300 font-semibold shadow-md">
-                <i class="fa-solid fa-map-location-dot text-amber-400"></i>
-                <span>Peta Misi Belajar</span>
+        <!-- Top Navigation Bar for Map: Aligned with max-w-5xl for perfect axis alignment -->
+        <div class="w-full max-w-5xl flex justify-between items-center relative z-10 pt-1 sm:pt-2">
+            <div class="flex items-center gap-2.5 bg-slate-900/85 backdrop-blur-md border border-slate-700/80 px-4 py-2 rounded-2xl text-xs text-slate-200 font-bold shadow-lg">
+                <i class="fa-solid fa-map-location-dot text-amber-400 text-sm"></i>
+                <span class="tracking-wide">Peta Misi Belajar</span>
             </div>
             
             <!-- Posisi Kanan Atas: Tombol Sound, Kembali & Home -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2.5">
                 <!-- Tombol Audio / Sound -->
-                <button onclick="toggleAudio()" class="btn-audio-toggle w-8 h-8 rounded-full bg-slate-900/85 hover:bg-emerald-600 border border-emerald-500/40 text-emerald-400 hover:text-white transition-all flex items-center justify-center shadow-lg" title="Matikan / Nyalakan Suara">
+                <button onclick="toggleAudio()" class="btn-audio-toggle w-9 h-9 rounded-2xl bg-slate-900/85 hover:bg-emerald-600 border border-emerald-500/40 text-emerald-400 hover:text-white transition-all flex items-center justify-center shadow-lg" title="Matikan / Nyalakan Suara">
                     <i class="fa-solid fa-volume-high text-xs"></i>
                 </button>
                 <!-- Tombol Kembali (Panah) -->
-                <button onclick="returnToLanding()" class="flex items-center gap-2 bg-slate-900/85 hover:bg-emerald-600 hover:text-white border border-emerald-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-300 transition-all shadow-lg group">
+                <button onclick="returnToLanding()" class="flex items-center gap-2 bg-slate-900/85 hover:bg-emerald-600 hover:text-white border border-emerald-500/40 px-4 py-2 rounded-2xl text-xs font-bold text-emerald-300 transition-all shadow-lg group">
                     <i class="fa-solid fa-arrow-left group-hover:-translate-x-0.5 transition-transform"></i>
                     <span>Kembali</span>
                 </button>
                 <!-- Tombol Home (Rumah) -->
-                <button onclick="returnToLanding()" class="flex items-center gap-1.5 bg-slate-900/85 hover:bg-emerald-600 hover:text-white border border-emerald-500/40 px-3 py-1.5 rounded-full text-xs font-bold text-emerald-300 transition-all shadow-lg" title="Ke Halaman Utama (Home)">
+                <button onclick="returnToLanding()" class="flex items-center gap-2 bg-slate-900/85 hover:bg-emerald-600 hover:text-white border border-emerald-500/40 px-3.5 py-2 rounded-2xl text-xs font-bold text-emerald-300 transition-all shadow-lg" title="Ke Halaman Utama (Home)">
                     <i class="fa-solid fa-house"></i>
                     <span class="hidden sm:inline">Home</span>
                 </button>
             </div>
         </div>
 
-        <!-- Center: Map Title & Realms Choices -->
-        <div class="relative z-10 flex flex-col items-center justify-center my-auto py-4 text-center max-w-5xl w-full">
+        <!-- Center: Map Title & Realms Choices Perfectly Centered -->
+        <div class="relative z-10 flex flex-col items-center justify-center my-auto py-6 text-center max-w-5xl w-full">
             
             <!-- Map Header Title Banner -->
-            <div class="wood-title-banner rounded-2xl px-6 sm:px-12 py-3.5 mb-6 max-w-xl w-full relative">
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-emerald-100 border border-emerald-300 px-3.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest shadow">
+            <div class="wood-title-banner rounded-3xl px-8 sm:px-14 py-4 mb-7 max-w-2xl w-full relative">
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-emerald-100 border border-emerald-300 px-4 py-0.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-md">
                     Pilih Wilayah Petualangan
                 </div>
-                <h2 class="text-xl sm:text-3xl font-black tracking-wider gold-carved-text font-fantasy uppercase mt-1">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-wider gold-carved-text font-fantasy uppercase mt-1">
                     PETA JELAJAH MATEMATIKA
                 </h2>
-                <p class="text-xs font-semibold text-emerald-200/90 mt-1">
+                <p class="text-xs sm:text-sm font-semibold text-emerald-200/90 mt-1 max-w-lg mx-auto">
                     Tentukan caramu belajar: Eksplorasi Visual Garis Bilangan 3D atau Arena Operasi Bertingkat
                 </p>
             </div>
 
-            <!-- Two Main Adventure Realm Destinations -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 w-full max-w-4xl px-2">
+            <!-- Two Main Adventure Realm Destinations (Equal height, balanced gap, centered) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full max-w-4xl px-2 items-stretch">
                 
                 <!-- DESTINASI 1: SIMULATOR GARIS BILANGAN 3D -->
-                <div onclick="enterSimulatorFromMap()" class="map-card rounded-3xl p-6 sm:p-7 text-left cursor-pointer group flex flex-col justify-between border-2 border-emerald-500/40 relative overflow-hidden">
-                    <div class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition-all"></div>
+                <div onclick="enterSimulatorFromMap()" class="map-card rounded-3xl p-6 sm:p-8 text-left cursor-pointer group flex flex-col justify-between border-2 border-emerald-500/40 relative overflow-hidden shadow-2xl">
+                    <div class="absolute -right-10 -top-10 w-36 h-36 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition-all"></div>
                     
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-black uppercase px-2.5 py-1 rounded-full tracking-wider">
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] sm:text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-sm">
                                 Visual 3 Dimensi
                             </span>
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/50 flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
+                            <div class="w-13 h-13 rounded-2xl bg-emerald-950/80 border border-emerald-500/50 flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg p-3">
                                 <i class="fa-solid fa-cube"></i>
                             </div>
                         </div>
 
-                        <h3 class="text-xl sm:text-2xl font-black text-white group-hover:text-emerald-300 transition-colors mb-2 font-fantasy">
+                        <h3 class="text-xl sm:text-2xl font-black text-white group-hover:text-emerald-300 transition-colors mb-2.5 font-fantasy">
                             Kuil Simulator 3D
                         </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
                             Saksikan langkah dan hadap robot secara nyata di garis bilangan 3D. Pahami mengapa operasi kurang berbalik arah (180°) dan bilangan negatif melangkah mundur.
                         </p>
                         
-                        <div class="flex flex-wrap gap-2 text-[11px] font-mono text-emerald-300/80">
-                            <span class="bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700/80">Garis Bilangan 3D</span>
-                            <span class="bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700/80">Arah & Hadap Robot</span>
-                            <span class="bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700/80">Multi Sudut Pandang</span>
+                        <div class="flex flex-wrap gap-2 text-[11px] sm:text-xs font-mono text-emerald-300/90">
+                            <span class="bg-slate-900/90 px-2.5 py-1 rounded-xl border border-slate-700/80">Garis Bilangan 3D</span>
+                            <span class="bg-slate-900/90 px-2.5 py-1 rounded-xl border border-slate-700/80">Arah & Hadap Robot</span>
+                            <span class="bg-slate-900/90 px-2.5 py-1 rounded-xl border border-slate-700/80">Multi Sudut Pandang</span>
                         </div>
                     </div>
 
-                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between">
-                        <span class="text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
+                    <div class="mt-7 pt-4 border-t border-slate-800/90 flex items-center justify-between">
+                        <span class="text-xs sm:text-sm font-bold text-emerald-400 group-hover:translate-x-1.5 transition-transform flex items-center gap-2">
                             Masuk Simulator <i class="fa-solid fa-circle-arrow-right"></i>
                         </span>
-                        <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 text-xs">
-                            <i class="fa-solid fa-play"></i>
+                        <div class="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 text-xs shadow-md">
+                            <i class="fa-solid fa-play ml-0.5"></i>
                         </div>
                     </div>
                 </div>
 
                 <!-- DESTINASI 2: INTERAKTIF OPERASI BILANGAN BULAT (SATUAN, PULUHAN, RATUSAN) -->
-                <div onclick="enterInteractiveArenaFromMap()" class="map-card rounded-3xl p-6 sm:p-7 text-left cursor-pointer group flex flex-col justify-between border-2 border-indigo-500/40 relative overflow-hidden">
-                    <div class="absolute -right-8 -top-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/25 transition-all"></div>
+                <div onclick="enterInteractiveArenaFromMap()" class="map-card rounded-3xl p-6 sm:p-8 text-left cursor-pointer group flex flex-col justify-between border-2 border-indigo-500/40 relative overflow-hidden shadow-2xl">
+                    <div class="absolute -right-10 -top-10 w-36 h-36 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/25 transition-all"></div>
                     
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 text-[10px] font-black uppercase px-2.5 py-1 rounded-full tracking-wider">
+                            <span class="bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 text-[10px] sm:text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-sm">
                                 Latihan Bertingkat
                             </span>
-                            <div class="w-12 h-12 rounded-2xl bg-indigo-950/80 border border-indigo-500/50 flex items-center justify-center text-indigo-400 text-2xl group-hover:scale-110 group-hover:-rotate-6 transition-all shadow-lg">
+                            <div class="w-13 h-13 rounded-2xl bg-indigo-950/80 border border-indigo-500/50 flex items-center justify-center text-indigo-400 text-2xl group-hover:scale-110 group-hover:-rotate-6 transition-all shadow-lg p-3">
                                 <i class="fa-solid fa-gamepad"></i>
                             </div>
                         </div>
 
-                        <h3 class="text-xl sm:text-2xl font-black text-white group-hover:text-indigo-300 transition-colors mb-2 font-fantasy">
+                        <h3 class="text-xl sm:text-2xl font-black text-white group-hover:text-indigo-300 transition-colors mb-2.5 font-fantasy">
                             Lembah Tantangan Interaktif
                         </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
                             Uji kemahiranmu menyelesaikan operasi hitung bilangan bulat secara bertahap mulai dari <strong>Satuan</strong>, <strong>Puluhan</strong>, hingga <strong>Ratusan</strong> dengan berbagai kombinasi (+, −, ×, ÷).
                         </p>
                         
-                        <div class="flex flex-wrap gap-2 text-[11px] font-mono text-indigo-300/80">
-                            <span class="bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700/80">Satuan (-9 s.d 9)</span>
-                            <span class="bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700/80">Puluhan (-99 s.d 99)</span>
-                            <span class="bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700/80">Ratusan (-999 s.d 999)</span>
+                        <div class="flex flex-wrap gap-2 text-[11px] sm:text-xs font-mono text-indigo-300/90">
+                            <span class="bg-slate-900/90 px-2.5 py-1 rounded-xl border border-slate-700/80">Satuan (-9 s.d 9)</span>
+                            <span class="bg-slate-900/90 px-2.5 py-1 rounded-xl border border-slate-700/80">Puluhan (-99 s.d 99)</span>
+                            <span class="bg-slate-900/90 px-2.5 py-1 rounded-xl border border-slate-700/80">Ratusan (-999 s.d 999)</span>
                         </div>
                     </div>
 
-                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between">
-                        <span class="text-xs font-bold text-indigo-400 group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
+                    <div class="mt-7 pt-4 border-t border-slate-800/90 flex items-center justify-between">
+                        <span class="text-xs sm:text-sm font-bold text-indigo-400 group-hover:translate-x-1.5 transition-transform flex items-center gap-2">
                             Mulai Latihan Bertingkat <i class="fa-solid fa-circle-arrow-right"></i>
                         </span>
-                        <div class="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-indigo-300 text-xs">
+                        <div class="w-9 h-9 rounded-full bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-indigo-300 text-xs shadow-md">
                             <i class="fa-solid fa-bolt"></i>
                         </div>
                     </div>
@@ -498,158 +498,158 @@
 
         </div>
 
-        <!-- Footer Guidance -->
+        <!-- Footer Guidance Centered -->
         <div class="w-full max-w-4xl text-center relative z-10 pb-2">
-            <p class="text-[11px] text-slate-400">
+            <p class="text-xs text-slate-400/90">
                 Pilih salah satu destinasi untuk memulai. Kamu dapat kembali ke peta ini kapan saja melalui menu navigasi.
             </p>
         </div>
     </div>
 
     <!-- ==================== HALAMAN KETIGA: ARENA INTERAKTIF OPERASI BERTINGKAT ==================== -->
-    <div id="arena-screen" class="fixed inset-0 z-45 hidden flex-col items-center justify-between bg-slate-950 p-4 sm:p-6 overflow-y-auto transition-opacity duration-300">
+    <div id="arena-screen" class="fixed inset-0 z-40 hidden flex flex-col items-center justify-between bg-slate-950 p-4 sm:p-6 lg:p-8 overflow-y-auto transition-opacity duration-300">
         
         <!-- Header Arena: Skor/Streak di kiri, Tombol Kembali & Home di KANAN ATAS -->
-        <div class="w-full max-w-5xl flex justify-between items-center relative z-10 border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-2.5">
-                <div class="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold text-emerald-400">
+        <div class="w-full max-w-4xl lg:max-w-5xl flex justify-between items-center relative z-10 border-b border-slate-800/90 pb-3.5 pt-1">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-1.5 rounded-2xl text-xs sm:text-sm font-bold text-emerald-400 shadow-sm">
                     <i class="fa-solid fa-star text-amber-400"></i>
                     <span>Skor: <span id="arena-score">0</span></span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-indigo-500/10 border border-indigo-500/30 px-3 py-1 rounded-full text-xs font-bold text-indigo-400">
+                <div class="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 px-3.5 py-1.5 rounded-2xl text-xs sm:text-sm font-bold text-indigo-400 shadow-sm">
                     <i class="fa-solid fa-fire text-rose-500"></i>
                     <span>Streak: <span id="arena-streak">0</span></span>
                 </div>
             </div>
 
             <!-- Posisi Kanan Atas: Tombol Sound, Kembali & Home -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 sm:gap-2.5">
                 <!-- Tombol Audio / Sound -->
-                <button onclick="toggleAudio()" class="btn-audio-toggle w-8 h-8 rounded-full bg-slate-900/85 hover:bg-indigo-600 border border-slate-700 text-indigo-400 hover:text-white transition-all flex items-center justify-center shadow-md" title="Matikan / Nyalakan Suara">
+                <button onclick="toggleAudio()" class="btn-audio-toggle w-9 h-9 rounded-2xl bg-slate-900/85 hover:bg-indigo-600 border border-slate-700 text-indigo-400 hover:text-white transition-all flex items-center justify-center shadow-md" title="Matikan / Nyalakan Suara">
                     <i class="fa-solid fa-volume-high text-xs"></i>
                 </button>
                 <!-- Tombol Kembali (Panah kembali ke Peta) -->
-                <button onclick="returnToMap()" class="flex items-center gap-2 bg-slate-900 hover:bg-indigo-600 hover:text-white border border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 transition-all shadow-md group">
+                <button onclick="returnToMap()" class="flex items-center gap-2 bg-slate-900 hover:bg-indigo-600 hover:text-white border border-slate-700 px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold text-slate-200 transition-all shadow-md group">
                     <i class="fa-solid fa-arrow-left group-hover:-translate-x-0.5 transition-transform"></i>
                     <span>Kembali</span>
                 </button>
                 <!-- Tombol Home (Rumah langsung ke Halaman Depan) -->
-                <button onclick="returnToLanding()" class="flex items-center gap-1.5 bg-slate-900 hover:bg-indigo-600 hover:text-white border border-slate-700 px-3 py-1.5 rounded-full text-xs font-bold text-slate-300 transition-all shadow-md" title="Ke Halaman Utama (Home)">
+                <button onclick="returnToLanding()" class="flex items-center gap-1.5 bg-slate-900 hover:bg-indigo-600 hover:text-white border border-slate-700 px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold text-slate-200 transition-all shadow-md" title="Ke Halaman Utama (Home)">
                     <i class="fa-solid fa-house"></i>
                     <span class="hidden sm:inline">Home</span>
                 </button>
             </div>
         </div>
 
-        <!-- Main Arena Challenge Container -->
-        <div class="relative z-10 flex flex-col items-center my-auto py-4 max-w-4xl w-full">
+        <!-- Main Arena Challenge Container: Centered, balanced widths and spacing -->
+        <div class="relative z-10 flex flex-col items-center my-auto py-5 max-w-4xl lg:max-w-5xl w-full">
             
             <!-- Tier Level Selector (Satuan, Puluhan, Ratusan) -->
-            <div class="w-full mb-3">
-                <label class="text-xs font-bold text-slate-400 mb-1.5 block text-center uppercase tracking-wider">
-                    1. Pilih Tingkat Bilangan:
+            <div class="w-full max-w-3xl mb-3.5">
+                <label class="text-xs font-extrabold text-slate-400 mb-2 block text-center uppercase tracking-wider">
+                    1. Tingkat Bilangan:
                 </label>
-                <div class="grid grid-cols-3 gap-2 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800">
-                    <button type="button" onclick="setArenaTier('satuan')" id="btn-tier-satuan" class="py-2 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all bg-emerald-600 text-white shadow-md">
-                        <i class="fa-solid fa-1 mr-1"></i> Satuan <span class="text-[10px] opacity-80 block sm:inline">(-9 s.d 9)</span>
+                <div class="grid grid-cols-3 gap-2 sm:gap-3 bg-slate-900/90 p-2 rounded-2xl border border-slate-800 shadow-lg">
+                    <button type="button" onclick="setArenaTier('satuan')" id="btn-tier-satuan" class="py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all bg-emerald-600 text-white shadow-md">
+                        <i class="fa-solid fa-1 mr-1"></i> Satuan <span class="text-[11px] opacity-80 block sm:inline">(-9 s.d 9)</span>
                     </button>
-                    <button type="button" onclick="setArenaTier('puluhan')" id="btn-tier-puluhan" class="py-2 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-dice-two mr-1"></i> Puluhan <span class="text-[10px] opacity-80 block sm:inline">(-99 s.d 99)</span>
+                    <button type="button" onclick="setArenaTier('puluhan')" id="btn-tier-puluhan" class="py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                        <i class="fa-solid fa-dice-two mr-1"></i> Puluhan <span class="text-[11px] opacity-80 block sm:inline">(-99 s.d 99)</span>
                     </button>
-                    <button type="button" onclick="setArenaTier('ratusan')" id="btn-tier-ratusan" class="py-2 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-dice-three mr-1"></i> Ratusan <span class="text-[10px] opacity-80 block sm:inline">(-999 s.d 999)</span>
+                    <button type="button" onclick="setArenaTier('ratusan')" id="btn-tier-ratusan" class="py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                        <i class="fa-solid fa-dice-three mr-1"></i> Ratusan <span class="text-[11px] opacity-80 block sm:inline">(-999 s.d 999)</span>
                     </button>
                 </div>
             </div>
 
             <!-- Interactive Mode Switcher (Bersusun, Drag&Drop, Kartu, FillBlank, Typing) -->
-            <div class="w-full mb-3">
-                <label class="text-xs font-bold text-slate-400 mb-1.5 block text-center uppercase tracking-wider">
+            <div class="w-full max-w-3xl mb-3.5">
+                <label class="text-xs font-extrabold text-slate-400 mb-2 block text-center uppercase tracking-wider">
                     2. Gaya Interaksi Belajar:
                 </label>
-                <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800">
-                    <button type="button" onclick="setArenaInteractionMode('auto')" id="btn-mode-auto" class="px-3 py-1.5 rounded-xl font-bold text-xs transition-all bg-indigo-600 text-white shadow-md">
-                        <i class="fa-solid fa-shuffle mr-1"></i> Mode Acak
+                <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 bg-slate-900/90 p-2 rounded-2xl border border-slate-800 shadow-lg">
+                    <button type="button" onclick="setArenaInteractionMode('auto')" id="btn-mode-auto" class="px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all bg-indigo-600 text-white shadow-md">
+                        <i class="fa-solid fa-shuffle mr-1"></i> Acak
                     </button>
-                    <button type="button" onclick="setArenaInteractionMode('bersusun')" id="btn-mode-bersusun" class="px-3 py-1.5 rounded-xl font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                    <button type="button" onclick="setArenaInteractionMode('bersusun')" id="btn-mode-bersusun" class="px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
                         <i class="fa-solid fa-bars-staggered mr-1"></i> Bersusun
                     </button>
-                    <button type="button" onclick="setArenaInteractionMode('cards')" id="btn-mode-cards" class="px-3 py-1.5 rounded-xl font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                    <button type="button" onclick="setArenaInteractionMode('cards')" id="btn-mode-cards" class="px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
                         <i class="fa-solid fa-clone mr-1"></i> Kartu Ajaib
                     </button>
-                    <button type="button" onclick="setArenaInteractionMode('dragdrop')" id="btn-mode-dragdrop" class="px-3 py-1.5 rounded-xl font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                    <button type="button" onclick="setArenaInteractionMode('dragdrop')" id="btn-mode-dragdrop" class="px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
                         <i class="fa-solid fa-hand-pointer mr-1"></i> Geser & Pasang
                     </button>
-                    <button type="button" onclick="setArenaInteractionMode('fillblank')" id="btn-mode-fillblank" class="px-3 py-1.5 rounded-xl font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-puzzle-piece mr-1"></i> Lengkapi Suku
+                    <button type="button" onclick="setArenaInteractionMode('fillblank')" id="btn-mode-fillblank" class="px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                        <i class="fa-solid fa-puzzle-piece mr-1"></i> Lengkapi
                     </button>
-                    <button type="button" onclick="setArenaInteractionMode('typing')" id="btn-mode-typing" class="px-3 py-1.5 rounded-xl font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-keyboard mr-1"></i> Ketik Mandiri
+                    <button type="button" onclick="setArenaInteractionMode('typing')" id="btn-mode-typing" class="px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                        <i class="fa-solid fa-keyboard mr-1"></i> Ketik
                     </button>
                 </div>
             </div>
 
             <!-- Operations Filter Bar -->
-            <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-4 w-full">
-                <span class="text-xs font-semibold text-slate-400 mr-1 hidden sm:inline">Operasi:</span>
-                <button type="button" onclick="setArenaOp('all')" id="btn-arena-op-all" class="px-2.5 py-1 rounded-lg text-xs font-bold border border-emerald-500 bg-emerald-600 text-white shadow">
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-5 w-full max-w-3xl">
+                <span class="text-xs font-bold text-slate-400 mr-1 hidden sm:inline uppercase tracking-wider">Operasi:</span>
+                <button type="button" onclick="setArenaOp('all')" id="btn-arena-op-all" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold border border-emerald-500 bg-emerald-600 text-white shadow-md">
                     Semua Operasi
                 </button>
-                <button type="button" onclick="setArenaOp('+')" id="btn-arena-op-plus" class="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
+                <button type="button" onclick="setArenaOp('+')" id="btn-arena-op-plus" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
                     + Tambah
                 </button>
-                <button type="button" onclick="setArenaOp('-')" id="btn-arena-op-minus" class="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
+                <button type="button" onclick="setArenaOp('-')" id="btn-arena-op-minus" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
                     - Kurang
                 </button>
-                <button type="button" onclick="setArenaOp('*')" id="btn-arena-op-mul" class="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
+                <button type="button" onclick="setArenaOp('*')" id="btn-arena-op-mul" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
                     × Kali
                 </button>
-                <button type="button" onclick="setArenaOp('/')" id="btn-arena-op-div" class="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
+                <button type="button" onclick="setArenaOp('/')" id="btn-arena-op-div" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white">
                     ÷ Bagi
                 </button>
             </div>
 
-            <!-- Challenge Main Interactive Card -->
-            <div class="bg-slate-900/90 border-2 border-slate-800 rounded-3xl p-5 sm:p-7 w-full shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
-                <div class="flex items-center justify-between w-full border-b border-slate-800 pb-3 mb-4">
-                    <span class="text-xs font-mono font-bold text-emerald-400" id="arena-question-badge">
+            <!-- Challenge Main Interactive Card: Generous width, elegant padding, centered -->
+            <div class="bg-slate-900/95 border-2 border-slate-800/90 rounded-3xl p-6 sm:p-8 lg:p-9 w-full max-w-3xl shadow-2xl flex flex-col items-center text-center relative overflow-hidden backdrop-blur-md">
+                <div class="flex items-center justify-between w-full border-b border-slate-800/90 pb-3.5 mb-5">
+                    <span class="text-xs sm:text-sm font-mono font-bold text-emerald-400 tracking-wide" id="arena-question-badge">
                         Misi Satuan • Operasi Campuran
                     </span>
-                    <span class="text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-2.5 py-1 rounded-full" id="arena-interaction-label">
+                    <span class="text-xs sm:text-sm font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-3 py-1 rounded-full shadow-sm" id="arena-interaction-label">
                         Interaktif
                     </span>
                 </div>
 
                 <!-- Dynamic Instruction Banner -->
-                <p id="arena-instruction-text" class="text-xs sm:text-sm text-slate-300 font-medium mb-4 leading-relaxed">
+                <p id="arena-instruction-text" class="text-xs sm:text-sm lg:text-base text-slate-300 font-medium mb-5 leading-relaxed max-w-xl">
                     Selesaikan tantangan berikut:
                 </p>
 
                 <!-- ================= WIDGET 1: OPERASI BERSUSUN ================= -->
-                <div id="widget-bersusun" class="hidden flex-col items-center justify-center w-full max-w-sm my-2">
-                    <div class="bg-slate-950 p-6 rounded-2xl border-2 border-slate-800 shadow-inner flex flex-col items-end w-full">
-                        <div class="text-3xl sm:text-4xl font-mono font-black text-white tracking-widest mb-1" id="bersusun-num-a">
+                <div id="widget-bersusun" class="hidden flex-col items-center justify-center w-full max-w-md my-2">
+                    <div class="bg-slate-950 p-6 sm:p-7 rounded-3xl border-2 border-slate-800/90 shadow-2xl flex flex-col items-end w-full">
+                        <div class="text-3xl sm:text-5xl font-mono font-black text-white tracking-widest mb-1" id="bersusun-num-a">
                             125
                         </div>
-                        <div class="flex items-center justify-between w-full text-3xl sm:text-4xl font-mono font-black text-emerald-400 tracking-widest">
-                            <span id="bersusun-operator" class="text-2xl text-amber-400 ml-2">+</span>
+                        <div class="flex items-center justify-between w-full text-3xl sm:text-5xl font-mono font-black text-emerald-400 tracking-widest">
+                            <span id="bersusun-operator" class="text-2xl sm:text-3xl text-amber-400 ml-2">+</span>
                             <span id="bersusun-num-b">74</span>
                         </div>
                         <!-- Divider Line -->
-                        <div class="w-full h-1 bg-slate-700 my-3 rounded-full"></div>
+                        <div class="w-full h-1.5 bg-slate-700/80 my-3.5 rounded-full"></div>
                         <!-- Digit Inputs Container -->
-                        <div id="bersusun-inputs-container" class="flex items-center justify-end gap-2 w-full">
+                        <div id="bersusun-inputs-container" class="flex items-center justify-end gap-2.5 w-full">
                             <!-- Injected dynamically based on digits -->
                         </div>
                     </div>
-                    <button type="button" onclick="checkBersusunAnswer()" class="mt-4 px-8 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-2">
+                    <button type="button" onclick="checkBersusunAnswer()" class="mt-5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-emerald-600/30 transition-all flex items-center gap-2.5">
                         <i class="fa-solid fa-check"></i> Periksa Hasil Bersusun
                     </button>
                 </div>
 
                 <!-- ================= WIDGET 2: DRAG AND DROP ================= -->
                 <div id="widget-dragdrop" class="hidden flex-col items-center justify-center w-full my-2">
-                    <div class="flex flex-wrap items-center justify-center gap-2 text-2xl sm:text-4xl font-mono font-black text-white bg-slate-950/80 px-6 py-4 rounded-2xl border border-slate-800 mb-6">
+                    <div class="flex flex-wrap items-center justify-center gap-3 text-2xl sm:text-4xl lg:text-5xl font-mono font-black text-white bg-slate-950/90 px-8 py-5 rounded-3xl border border-slate-800 shadow-inner mb-6">
                         <span id="drag-slot-left">15</span>
                         <span id="drag-slot-op" class="text-emerald-400">+</span>
                         <span id="drag-slot-right">(-8) =</span>
@@ -658,59 +658,59 @@
                              ondragleave="handleDragLeave(event)" 
                              ondrop="handleDrop(event)" 
                              onclick="handleTargetClick(event)"
-                             class="drop-target-box min-w-[70px] sm:min-w-[90px] h-12 sm:h-14 rounded-xl flex items-center justify-center font-bold text-emerald-300 text-xl cursor-pointer">
+                             class="drop-target-box min-w-[76px] sm:min-w-[100px] h-13 sm:h-16 rounded-2xl flex items-center justify-center font-black text-emerald-300 text-2xl sm:text-3xl cursor-pointer shadow-lg">
                             ?
                         </div>
                     </div>
-                    <p class="text-xs text-slate-400 mb-2 font-medium">Pilihan Angka (Tarik ke kotak bertanda tanya atau klik kartu):</p>
-                    <div id="drag-options-container" class="flex flex-wrap items-center justify-center gap-3">
+                    <p class="text-xs sm:text-sm text-slate-400 mb-3 font-medium">Pilihan Angka (Tarik ke kotak bertanda tanya atau klik kartu lalu klik kotak):</p>
+                    <div id="drag-options-container" class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                         <!-- Populated dynamically -->
                     </div>
                 </div>
 
                 <!-- ================= WIDGET 3: KARTU ANGKA AJAIB ================= -->
                 <div id="widget-cards" class="hidden flex-col items-center justify-center w-full my-2">
-                    <div id="arena-cards-expression" class="text-2xl sm:text-4xl font-mono font-black text-amber-300 py-2 mb-4 tracking-wider">
+                    <div id="arena-cards-expression" class="text-3xl sm:text-5xl font-mono font-black text-amber-300 py-3 mb-5 tracking-wider">
                         -15 + 8 = ?
                     </div>
-                    <div id="magic-cards-container" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-xl">
+                    <div id="magic-cards-container" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5 w-full max-w-2xl">
                         <!-- Cards populated dynamically -->
                     </div>
                 </div>
 
                 <!-- ================= WIDGET 4: LENGKAPI SUKU HILANG ================= -->
                 <div id="widget-fillblank" class="hidden flex-col items-center justify-center w-full my-2">
-                    <div id="fillblank-equation-display" class="flex flex-wrap items-center justify-center gap-2 text-2xl sm:text-4xl font-mono font-black text-white bg-slate-950/80 px-6 py-4 rounded-2xl border border-slate-800 mb-5">
+                    <div id="fillblank-equation-display" class="flex flex-wrap items-center justify-center gap-3 text-2xl sm:text-4xl lg:text-5xl font-mono font-black text-white bg-slate-950/90 px-8 py-5 rounded-3xl border border-slate-800 shadow-inner mb-6">
                         <!-- Injected dynamically -->
                     </div>
-                    <p class="text-xs text-slate-400 mb-2">Pilih nilai yang tepat untuk melengkapi persamaan di atas:</p>
-                    <div id="fillblank-chips-container" class="flex flex-wrap items-center justify-center gap-2.5">
+                    <p class="text-xs sm:text-sm text-slate-400 mb-3 font-medium">Pilih nilai yang tepat untuk melengkapi persamaan di atas:</p>
+                    <div id="fillblank-chips-container" class="flex flex-wrap items-center justify-center gap-3">
                         <!-- Chips populated dynamically -->
                     </div>
                 </div>
 
                 <!-- ================= WIDGET 5: KETIK MANDIRI (KLASIK) ================= -->
                 <div id="widget-typing" class="hidden flex-col items-center justify-center w-full my-2">
-                    <div id="arena-typing-expression" class="text-3xl sm:text-5xl font-mono font-black text-emerald-400 py-3 tracking-wider mb-3">
+                    <div id="arena-typing-expression" class="text-3xl sm:text-5xl lg:text-6xl font-mono font-black text-emerald-400 py-4 tracking-wider mb-4">
                         -15 + (-24) = ?
                     </div>
-                    <form onsubmit="event.preventDefault(); checkArenaAnswer();" class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md">
-                        <input type="number" id="arena-user-answer" placeholder="Ketik hasil angka..." required class="w-full sm:flex-1 bg-slate-950 border-2 border-slate-700 focus:border-emerald-500 rounded-2xl px-4 py-3 text-white font-mono font-bold text-center text-xl focus:outline-none transition-all">
-                        <button type="submit" class="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-base shadow-lg shadow-emerald-600/30 transition-all flex items-center justify-center gap-2">
+                    <form onsubmit="event.preventDefault(); checkArenaAnswer();" class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-lg">
+                        <input type="number" id="arena-user-answer" placeholder="Ketik hasil angka..." required class="w-full sm:flex-1 bg-slate-950 border-2 border-slate-700 focus:border-emerald-500 rounded-2xl px-5 py-3.5 text-white font-mono font-black text-center text-xl sm:text-2xl focus:outline-none transition-all shadow-inner">
+                        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-emerald-600/30 transition-all flex items-center justify-center gap-2">
                             <i class="fa-solid fa-check"></i> Jawab
                         </button>
                     </form>
                 </div>
 
-                <!-- Feedback Card -->
-                <div id="arena-feedback" class="hidden mt-4 w-full rounded-2xl p-4 text-xs font-semibold border text-center transition-all leading-relaxed"></div>
+                <!-- Feedback Card: centered and well-spaced -->
+                <div id="arena-feedback" class="hidden mt-5 w-full max-w-xl rounded-2xl p-4 sm:p-5 text-xs sm:text-sm font-semibold border text-center transition-all leading-relaxed shadow-lg"></div>
 
-                <!-- Navigation between Arena & 3D Simulator -->
-                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-5 w-full border-t border-slate-800 pt-4">
-                    <button type="button" onclick="loadArenaProblemIntoSimulator()" class="px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
+                <!-- Navigation between Arena & 3D Simulator: Centered -->
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-6 w-full border-t border-slate-800/90 pt-5">
+                    <button type="button" onclick="loadArenaProblemIntoSimulator()" class="px-5 py-2.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm">
                         <i class="fa-solid fa-cube"></i> Uji di Simulator 3D
                     </button>
-                    <button type="button" onclick="nextArenaQuestion()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-all flex items-center gap-1.5">
+                    <button type="button" onclick="nextArenaQuestion()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm">
                         <i class="fa-solid fa-forward"></i> Soal Berikutnya
                     </button>
                 </div>
@@ -719,9 +719,9 @@
 
         </div>
 
-        <!-- Footer Credits -->
+        <!-- Footer Credits Centered -->
         <div class="w-full max-w-4xl text-center relative z-10 pb-2">
-            <p class="text-[11px] text-slate-500">
+            <p class="text-xs text-slate-500">
                 Pilih <strong class="text-indigo-400">"Uji di Simulator 3D"</strong> untuk melihat visualisasi langkah hadap robot pada nilai yang kompatibel.
             </p>
         </div>
@@ -1007,65 +1007,65 @@
     <div id="simulator-screen" class="hidden flex-col flex-1 w-full min-h-screen transition-opacity duration-300">
         
         <!-- HEADER UTAMA SIMULATOR (Berisi Menu Eksplorasi, Tantangan Kuis, Konsep) -->
-        <header class="bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 px-4 lg:px-8 py-3 backdrop-blur-md transition-colors duration-300">
+        <header class="bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 px-4 lg:px-8 py-3.5 backdrop-blur-md transition-colors duration-300">
             <!-- Top Badges / Institution Info -->
-            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="max-w-[1540px] mx-auto flex flex-wrap items-center justify-between gap-4">
                 
                 <!-- Brand Logo & Title -->
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-slate-900/60 dark:bg-slate-900/60 border border-slate-700/80 flex items-center justify-center overflow-hidden shadow-lg shadow-indigo-500/10 p-0.5">
-                        <img id="app-logo" src="https://lh3.googleusercontent.com/d/1QuYzwxLWH50aWdZzLtIJHfYVz8Ba8EcK" alt="Logo Media Pembelajaran" class="w-full h-full object-contain rounded-lg" onerror="this.onerror=null; this.src='https://placehold.co/40x40/312e81/ffffff?text=3D';">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-2xl bg-slate-900/60 dark:bg-slate-900/60 border border-slate-700/80 flex items-center justify-center overflow-hidden shadow-lg shadow-indigo-500/10 p-0.5">
+                        <img id="app-logo" src="https://lh3.googleusercontent.com/d/1QuYzwxLWH50aWdZzLtIJHfYVz8Ba8EcK" alt="Logo Media Pembelajaran" class="w-full h-full object-contain rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/40x40/312e81/ffffff?text=3D';">
                     </div>
                     <div>
-                        <div class="flex items-center gap-2">
-                            <h1 class="text-base sm:text-lg font-black tracking-tight bg-gradient-to-r from-emerald-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent">
+                        <div class="flex items-center gap-2.5">
+                            <h1 class="text-lg sm:text-xl font-black tracking-tight bg-gradient-to-r from-emerald-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent">
                                 SOBAT 3D
                             </h1>
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                                 Kurikulum Merdeka
                             </span>
                         </div>
-                        <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Simulator Operasi Bilangan Bulat Berbasis Garis Bilangan 3D</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">Simulator Operasi Bilangan Bulat Berbasis Garis Bilangan 3D</p>
                     </div>
                 </div>
 
                 <!-- Mode Tabs (Eksplorasi, Tantangan Kuis, Konsep) & Navigasi Kanan Atas -->
-                <div class="flex items-center flex-wrap gap-2">
-                    <nav id="simulator-nav-tabs" class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800/80 p-1 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs font-semibold">
-                        <button id="tab-exploration" onclick="switchMode('exploration')" class="px-3 py-1.5 rounded-lg transition-all duration-200 bg-indigo-600 text-white shadow-sm flex items-center gap-1.5">
+                <div class="flex items-center flex-wrap gap-2.5">
+                    <nav id="simulator-nav-tabs" class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700/80 text-xs sm:text-sm font-bold">
+                        <button id="tab-exploration" onclick="switchMode('exploration')" class="px-3.5 py-2 rounded-xl transition-all duration-200 bg-indigo-600 text-white shadow-md flex items-center gap-2">
                             <i class="fa-solid fa-compass"></i>
                             <span>Eksplorasi</span>
                         </button>
-                        <button id="tab-quiz" onclick="switchMode('quiz')" class="px-3 py-1.5 rounded-lg transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-1.5">
+                        <button id="tab-quiz" onclick="switchMode('quiz')" class="px-3.5 py-2 rounded-xl transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-2">
                             <i class="fa-solid fa-gamepad"></i>
                             <span>Tantangan Kuis</span>
                         </button>
-                        <button id="tab-concept" onclick="switchMode('concept')" class="px-3 py-1.5 rounded-lg transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-1.5">
+                        <button id="tab-concept" onclick="switchMode('concept')" class="px-3.5 py-2 rounded-xl transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-2">
                             <i class="fa-solid fa-book-open"></i>
                             <span>Konsep</span>
                         </button>
                     </nav>
 
                     <!-- Audio Toggle -->
-                    <button id="btn-audio" onclick="toggleAudio()" class="btn-audio-toggle p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-all text-xs w-9 h-9 flex items-center justify-center" title="Matikan / Nyalakan Suara">
-                        <i class="fa-solid fa-volume-high text-indigo-400"></i>
+                    <button id="btn-audio" onclick="toggleAudio()" class="btn-audio-toggle p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-all text-xs w-10 h-10 flex items-center justify-center shadow-sm" title="Matikan / Nyalakan Suara">
+                        <i class="fa-solid fa-volume-high text-indigo-400 text-sm"></i>
                     </button>
 
                     <!-- Theme Toggle -->
-                    <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-all text-xs w-9 h-9 flex items-center justify-center" title="Ubah Mode Terang/Gelap">
-                        <i id="theme-icon" class="fa-solid fa-sun text-amber-400"></i>
+                    <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-all text-xs w-10 h-10 flex items-center justify-center shadow-sm" title="Ubah Mode Terang/Gelap">
+                        <i id="theme-icon" class="fa-solid fa-sun text-amber-400 text-sm"></i>
                     </button>
 
                     <!-- Pemisah Garis Vertikal -->
-                    <div class="h-6 w-px bg-slate-300 dark:bg-slate-700 hidden sm:block"></div>
+                    <div class="h-7 w-px bg-slate-300 dark:bg-slate-700 hidden sm:block"></div>
 
                     <!-- Tombol Navigasi Kanan Atas: Kembali & Home -->
-                    <div class="flex items-center gap-1.5">
-                        <button onclick="returnToMap()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-emerald-600 text-slate-700 dark:bg-slate-800 dark:text-emerald-300 hover:text-white border border-slate-300 dark:border-emerald-500/40 transition-all text-xs font-bold flex items-center gap-1.5 shadow-sm group" title="Kembali ke Peta Petualangan">
+                    <div class="flex items-center gap-2">
+                        <button onclick="returnToMap()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-emerald-600 text-slate-700 dark:bg-slate-800 dark:text-emerald-300 hover:text-white border border-slate-300 dark:border-emerald-500/40 transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm group" title="Kembali ke Peta Petualangan">
                             <i class="fa-solid fa-arrow-left group-hover:-translate-x-0.5 transition-transform"></i>
                             <span>Kembali</span>
                         </button>
-                        <button onclick="returnToLanding()" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-indigo-600 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:text-white border border-slate-300 dark:border-slate-700 transition-all text-xs font-bold flex items-center justify-center shadow-sm" title="Kembali ke Halaman Utama (Home)">
+                        <button onclick="returnToLanding()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-indigo-600 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:text-white border border-slate-300 dark:border-slate-700 transition-all text-xs sm:text-sm font-bold flex items-center justify-center shadow-sm" title="Kembali ke Halaman Utama (Home)">
                             <i class="fa-solid fa-house"></i>
                         </button>
                     </div>
@@ -1074,265 +1074,272 @@
             </div>
         </header>
 
-        <!-- Main Workspace Simulator 3D -->
-        <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+        <!-- Main Workspace Simulator 3D: Luas, Proporsional, dan Terpusat -->
+        <main class="flex-1 max-w-[1540px] w-full mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             
-            <!-- EXPLORATION PANEL -->
-            <div id="panel-exploration" class="bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-4 sm:p-5 shadow-xl flex flex-col gap-4">
-                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700/80 pb-3">
-                    <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-sm">
-                        <i class="fa-solid fa-sliders"></i>
-                        <span>Input Operasi Hitung</span>
-                    </div>
-                    <button onclick="resetInputs()" class="text-xs text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors flex items-center gap-1 font-medium">
-                        <i class="fa-solid fa-rotate-right"></i> Reset
-                    </button>
-                </div>
-
-                <!-- Input Sliders Form -->
-                <form id="calc-form" onsubmit="event.preventDefault(); triggerSimulation();" class="flex flex-col gap-3.5">
-                    
-                    <!-- Bilangan Pertama (A) -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <label class="text-xs font-bold text-slate-700 dark:text-slate-300">
-                                Bilangan Pertama (A):
-                            </label>
-                            <span id="val-a-disp" class="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-slate-900 px-2 py-0.5 rounded border border-indigo-200 dark:border-slate-700">+3</span>
+            <!-- Left Column: Controls & Narration Panel (Lebih Luas: 5 Kolom) -->
+            <section class="lg:col-span-5 flex flex-col gap-5 w-full">
+            
+                <!-- EXPLORATION PANEL -->
+                <div id="panel-exploration" class="bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-3xl border border-slate-200 dark:border-slate-700/80 p-5 sm:p-6 shadow-xl flex flex-col gap-5">
+                    <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700/80 pb-3.5">
+                        <div class="flex items-center gap-2.5 text-indigo-600 dark:text-indigo-400 font-extrabold text-base sm:text-lg">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span>Input Parameter Operasi</span>
                         </div>
-                        <input type="range" id="input-a" min="-12" max="12" value="3" step="1" 
-                               oninput="updateValueDisplays()" 
-                               class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                        <div class="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-1">
-                            <span>-12</span>
-                            <span>0</span>
-                            <span>+12</span>
-                        </div>
-                    </div>
-
-                    <!-- Operator Selection -->
-                    <div>
-                        <label class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 block">Operasi:</label>
-                        <div class="grid grid-cols-3 gap-2">
-                            <button type="button" onclick="setOperator('+')" id="op-btn-plus" class="py-2 rounded-xl border border-indigo-500 bg-indigo-600 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-plus text-xs"></i> Tambah
-                            </button>
-                            <button type="button" onclick="setOperator('-')" id="op-btn-minus" class="py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 font-bold text-xs sm:text-sm hover:border-indigo-400 transition-all flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-minus text-xs"></i> Kurang
-                            </button>
-                            <button type="button" onclick="setOperator('*')" id="op-btn-multiply" class="py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 font-bold text-xs sm:text-sm hover:border-indigo-400 transition-all flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-xmark text-xs"></i> Kali
-                            </button>
-                        </div>
-                        <input type="hidden" id="input-op" value="+">
-                    </div>
-
-                    <!-- Bilangan Kedua (B) -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <label class="text-xs font-bold text-slate-700 dark:text-slate-300">
-                                Bilangan Kedua (B):
-                            </label>
-                            <span id="val-b-disp" class="text-xs font-mono font-bold text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-slate-900 px-2 py-0.5 rounded border border-violet-200 dark:border-slate-700">-5</span>
-                        </div>
-                        <input type="range" id="input-b" min="-10" max="10" value="-5" step="1" 
-                               oninput="updateValueDisplays()" 
-                               class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                        <div class="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-1">
-                            <span>-10</span>
-                            <span>0</span>
-                            <span>+10</span>
-                        </div>
-                    </div>
-
-                    <!-- Popular Preset Examples -->
-                    <div>
-                        <label class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5 block">Contoh Konseptual:</label>
-                        <div class="flex flex-wrap gap-1.5">
-                            <button type="button" onclick="loadPreset(3, '+', 4)" class="text-[11px] font-mono bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-lg text-slate-700 dark:text-slate-300 transition-colors">3 + 4</button>
-                            <button type="button" onclick="loadPreset(4, '+', -6)" class="text-[11px] font-mono bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-lg text-slate-700 dark:text-slate-300 transition-colors">4 + (-6)</button>
-                            <button type="button" onclick="loadPreset(2, '-', 5)" class="text-[11px] font-mono bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-lg text-slate-700 dark:text-slate-300 transition-colors">2 - 5</button>
-                            <button type="button" onclick="loadPreset(-3, '-', -7)" class="text-[11px] font-mono bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-lg text-slate-700 dark:text-slate-300 transition-colors">-3 - (-7)</button>
-                            <button type="button" onclick="loadPreset(3, '*', -2)" class="text-[11px] font-mono bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-lg text-slate-700 dark:text-slate-300 transition-colors">3 × (-2)</button>
-                        </div>
-                    </div>
-
-                    <!-- Simulation Controls -->
-                    <div class="flex gap-2 pt-1">
-                        <button type="submit" id="btn-play-sim" class="flex-1 py-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-xs sm:text-sm">
-                            <i class="fa-solid fa-play"></i> Simulasikan 3D
+                        <button onclick="resetInputs()" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors flex items-center gap-1.5 font-bold">
+                            <i class="fa-solid fa-rotate-right"></i> Reset Nilai
                         </button>
                     </div>
-                </form>
-            </div>
 
-            <!-- QUIZ CHALLENGE PANEL (Hidden initially) -->
-            <div id="panel-quiz" class="hidden bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-4 sm:p-5 shadow-xl flex-col gap-4">
-                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700/80 pb-3">
-                    <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <span>Tantangan Interaktif</span>
+                    <!-- Input Sliders Form -->
+                    <form id="calc-form" onsubmit="event.preventDefault(); triggerSimulation();" class="flex flex-col gap-4.5">
+                        
+                        <!-- Bilangan Pertama (A) -->
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Bilangan Pertama (A):
+                                </label>
+                                <span id="val-a-disp" class="text-sm sm:text-base font-mono font-black text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-slate-950 px-3 py-1 rounded-xl border border-indigo-200 dark:border-slate-700 shadow-sm">+3</span>
+                            </div>
+                            <input type="range" id="input-a" min="-12" max="12" value="3" step="1" 
+                                   oninput="updateValueDisplays()" 
+                                   class="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                            <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-mono font-semibold mt-1.5 px-0.5">
+                                <span>-12</span>
+                                <span>-6</span>
+                                <span>0</span>
+                                <span>+6</span>
+                                <span>+12</span>
+                            </div>
+                        </div>
+
+                        <!-- Operator Selection -->
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/60">
+                            <label class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-2.5 block">Pilih Operasi Hitung:</label>
+                            <div class="grid grid-cols-3 gap-2.5">
+                                <button type="button" onclick="setOperator('+')" id="op-btn-plus" class="py-3 px-3 rounded-2xl border border-indigo-500 bg-indigo-600 text-white font-extrabold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-plus text-xs"></i> Tambah
+                                </button>
+                                <button type="button" onclick="setOperator('-')" id="op-btn-minus" class="py-3 px-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-extrabold text-sm sm:text-base hover:border-indigo-400 transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-minus text-xs"></i> Kurang
+                                </button>
+                                <button type="button" onclick="setOperator('*')" id="op-btn-multiply" class="py-3 px-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-extrabold text-sm sm:text-base hover:border-indigo-400 transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-xmark text-xs"></i> Kali
+                                </button>
+                            </div>
+                            <input type="hidden" id="input-op" value="+">
+                        </div>
+
+                        <!-- Bilangan Kedua (B) -->
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Bilangan Kedua (B):
+                                </label>
+                                <span id="val-b-disp" class="text-sm sm:text-base font-mono font-black text-violet-600 dark:text-violet-300 bg-violet-50 dark:bg-slate-950 px-3 py-1 rounded-xl border border-violet-200 dark:border-slate-700 shadow-sm">-5</span>
+                            </div>
+                            <input type="range" id="input-b" min="-10" max="10" value="-5" step="1" 
+                                   oninput="updateValueDisplays()" 
+                                   class="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-violet-600">
+                            <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-mono font-semibold mt-1.5 px-0.5">
+                                <span>-10</span>
+                                <span>-5</span>
+                                <span>0</span>
+                                <span>+5</span>
+                                <span>+10</span>
+                            </div>
+                        </div>
+
+                        <!-- Popular Preset Examples -->
+                        <div class="pt-1">
+                            <label class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 mb-2 block">Pilihan Kasus Contoh Cepat:</label>
+                            <div class="flex flex-wrap gap-2">
+                                <button type="button" onclick="loadPreset(3, '+', 4)" class="text-xs sm:text-sm font-mono font-bold bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl text-slate-700 dark:text-slate-300 transition-colors">3 + 4</button>
+                                <button type="button" onclick="loadPreset(4, '+', -6)" class="text-xs sm:text-sm font-mono font-bold bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl text-slate-700 dark:text-slate-300 transition-colors">4 + (-6)</button>
+                                <button type="button" onclick="loadPreset(2, '-', 5)" class="text-xs sm:text-sm font-mono font-bold bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl text-slate-700 dark:text-slate-300 transition-colors">2 - 5</button>
+                                <button type="button" onclick="loadPreset(-3, '-', -7)" class="text-xs sm:text-sm font-mono font-bold bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl text-slate-700 dark:text-slate-300 transition-colors">-3 - (-7)</button>
+                                <button type="button" onclick="loadPreset(3, '*', -2)" class="text-xs sm:text-sm font-mono font-bold bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl text-slate-700 dark:text-slate-300 transition-colors">3 × (-2)</button>
+                            </div>
+                        </div>
+
+                        <!-- Simulation Controls -->
+                        <div class="pt-2">
+                            <button type="submit" id="btn-play-sim" class="w-full py-3.5 sm:py-4 bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-extrabold rounded-2xl shadow-xl shadow-indigo-600/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 text-sm sm:text-base">
+                                <i class="fa-solid fa-play text-sm"></i> Simulasikan Pergerakan 3D
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- QUIZ CHALLENGE PANEL (Hidden initially) -->
+                <div id="panel-quiz" class="hidden bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-3xl border border-slate-200 dark:border-slate-700/80 p-5 sm:p-6 shadow-xl flex-col gap-4.5">
+                    <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700/80 pb-3">
+                        <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-extrabold text-base sm:text-lg">
+                            <i class="fa-solid fa-bullseye"></i>
+                            <span>Tantangan Interaktif</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                                Skor: <span id="score-val">0</span>
+                            </span>
+                            <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                                Streak: <span id="streak-val">0</span> 🔥
+                            </span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                            Skor: <span id="score-val">0</span>
+
+                    <div class="bg-slate-50 dark:bg-slate-900/80 rounded-2xl p-5 border border-slate-200 dark:border-slate-700/60 text-center">
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Berapa hasil dari:</p>
+                        <div id="quiz-expression" class="text-3xl sm:text-4xl font-black font-mono text-indigo-600 dark:text-amber-300 my-2">? + ?</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-medium">Bayangkan arah gerak robot di garis bilangan:</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); checkQuizAnswer();" class="flex gap-2.5">
+                        <input type="number" id="quiz-answer" placeholder="Ketik jawaban..." required class="flex-1 bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 rounded-2xl px-4 py-3 text-slate-900 dark:text-white font-mono font-bold text-center text-xl focus:outline-none focus:border-emerald-500 transition-all">
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3 rounded-2xl shadow-lg shadow-emerald-600/25 transition-all text-base">
+                            Cek
+                        </button>
+                    </form>
+
+                    <div id="quiz-feedback" class="hidden rounded-2xl p-4 text-xs sm:text-sm font-bold border text-center transition-all leading-relaxed"></div>
+
+                    <div class="flex gap-2.5 pt-1">
+                        <button type="button" onclick="simulateQuizOnLine()" class="flex-1 py-3 bg-indigo-50 dark:bg-indigo-950/40 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300 font-bold rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 border border-indigo-200 dark:border-indigo-800 transition-all">
+                            <i class="fa-solid fa-eye"></i> Tunjukkan di 3D
+                        </button>
+                        <button type="button" onclick="nextQuizQuestion()" class="flex-1 py-3 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-forward"></i> Soal Baru
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CONCEPT PANEL (Hidden initially) -->
+                <div id="panel-concept" class="hidden bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-3xl border border-slate-200 dark:border-slate-700/80 p-5 sm:p-6 shadow-xl flex-col gap-3.5 text-xs sm:text-sm leading-relaxed">
+                    <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-extrabold text-base border-b border-slate-200 dark:border-slate-700/80 pb-2.5">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <span>Prinsip Arah & Hadap (Kurikulum Merdeka)</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60">
+                            <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">1. Posisi & Arah Awal Robot:</span>
+                            <p class="text-slate-600 dark:text-slate-300">
+                                Robot selalu mulai di titik <strong>0</strong> dan mula-mula menghadap ke arah <strong>POSITIF (Kanan)</strong>.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60">
+                            <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. Operasi Tambah (+) vs Kurang (−):</span>
+                            <ul class="list-disc list-inside space-y-1.5 text-slate-600 dark:text-slate-300">
+                                <li><strong>Tambah (+):</strong> Robot mempertahankan arah hadap semula.</li>
+                                <li><strong>Kurang (−):</strong> Robot <strong>BERBALIK ARAH 180°</strong>!</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60">
+                            <span class="font-bold text-rose-600 dark:text-rose-400 block mb-1">3. Tanda Bilangan (Maju vs Mundur):</span>
+                            <ul class="list-disc list-inside space-y-1.5 text-slate-600 dark:text-slate-300">
+                                <li><strong>Bilangan Positif (+b):</strong> Melangkah <strong>MAJU</strong> searah hadap.</li>
+                                <li><strong>Bilangan Negatif (−b):</strong> Melangkah <strong>MUNDUR</strong> berlawanan arah hadap.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/25 border border-amber-200 dark:border-amber-800/40 text-amber-900 dark:text-amber-200">
+                            <strong class="text-sm">Mengapa (−) bertemu (−) menjadi (+)?</strong><br>
+                            Operasi kurang memerintahkan robot <em>berbalik ke kiri</em>, lalu bilangan negatif memerintahkannya <em>mundur</em>. Karena robot menghadap kiri dan melangkah mundur, robot justru bergerak ke <strong>KANAN</strong>!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mathematical Explanation & Step Narration Card (Luas & Mudah Dibaca) -->
+                <div class="bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-3xl border border-slate-200 dark:border-slate-700/80 p-5 sm:p-6 shadow-xl flex flex-col gap-3.5">
+                    <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-wand-magic-sparkles text-indigo-500 text-sm"></i> Narasi Langkah Edukatif
                         </span>
-                        <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                            Streak: <span id="streak-val">0</span> 🔥
-                        </span>
+                        <span id="current-phase-badge" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-500 text-xs font-bold">Siap</span>
+                    </div>
+
+                    <div id="math-expression-display" class="text-2xl sm:text-3xl font-black font-mono text-center py-3.5 px-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-indigo-600 dark:text-indigo-300 tracking-wide shadow-inner">
+                        3 + (-5) = -2
+                    </div>
+
+                    <div id="step-by-step-narration" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-800/80 leading-relaxed min-h-[95px] flex flex-col justify-center">
+                        Klik tombol <strong>"Simulasikan Pergerakan 3D"</strong> untuk melihat pergerakan hadap dan langkah robot secara nyata di garis bilangan.
                     </div>
                 </div>
 
-                <div class="bg-slate-50 dark:bg-slate-900/80 rounded-xl p-4 border border-slate-200 dark:border-slate-700/60 text-center">
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold mb-1">Berapa hasil dari:</p>
-                    <div id="quiz-expression" class="text-2xl sm:text-3xl font-black font-mono text-indigo-600 dark:text-amber-300 my-2">? + ?</div>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400">Bayangkan arah gerak robot di garis bilangan:</p>
-                </div>
+            </section>
 
-                <form onsubmit="event.preventDefault(); checkQuizAnswer();" class="flex gap-2">
-                    <input type="number" id="quiz-answer" placeholder="Jawaban..." required class="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white font-mono font-bold text-center text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2 rounded-xl shadow-md transition-all text-sm">
-                        Cek
-                    </button>
-                </form>
-
-                <div id="quiz-feedback" class="hidden rounded-xl p-3 text-xs font-medium border text-center transition-all"></div>
-
-                <div class="flex gap-2">
-                    <button type="button" onclick="simulateQuizOnLine()" class="flex-1 py-2 bg-indigo-50 dark:bg-indigo-950/40 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300 font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 border border-indigo-200 dark:border-indigo-800 transition-all">
-                        <i class="fa-solid fa-eye"></i> Tunjukkan di 3D
-                    </button>
-                    <button type="button" onclick="nextQuizQuestion()" class="flex-1 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
-                        <i class="fa-solid fa-forward"></i> Soal Baru
-                    </button>
-                </div>
-            </div>
-
-            <!-- CONCEPT PANEL (Hidden initially) -->
-            <div id="panel-concept" class="hidden bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-4 sm:p-5 shadow-xl flex-col gap-3 text-xs leading-relaxed">
-                <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-sm border-b border-slate-200 dark:border-slate-700/80 pb-2">
-                    <i class="fa-solid fa-book-bookmark"></i>
-                    <span>Prinsip Arah & Hadap (Kurikulum Merdeka)</span>
-                </div>
-
-                <div class="space-y-2.5">
-                    <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60">
-                        <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">1. Posisi & Arah Awal Robot:</span>
-                        <p class="text-slate-600 dark:text-slate-300 text-[11px]">
-                            Robot selalu mulai di titik <strong>0</strong> dan menghadap ke arah <strong>POSITIF (Kanan)</strong>.
-                        </p>
-                    </div>
-
-                    <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60">
-                        <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. Operasi Tambah (+) vs Kurang (−):</span>
-                        <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 text-[11px]">
-                            <li><strong>Tambah (+):</strong> Pertahankan hadap robot (tetap maju sesuai tanda).</li>
-                            <li><strong>Kurang (−):</strong> Robot <strong>BERBALIK ARAH 180°</strong>!</li>
-                        </ul>
-                    </div>
-
-                    <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60">
-                        <span class="font-bold text-rose-600 dark:text-rose-400 block mb-1">3. Tanda Bilangan (Maju vs Mundur):</span>
-                        <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 text-[11px]">
-                            <li><strong>Bilangan Positif (+b):</strong> Melangkah <strong>MAJU</strong>.</li>
-                            <li><strong>Bilangan Negatif (−b):</strong> Melangkah <strong>MUNDUR</strong>.</li>
-                        </ul>
-                    </div>
-
-                    <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 text-[11px] text-amber-900 dark:text-amber-200">
-                        <strong>Mengapa (−) bertemu (−) menjadi (+)?</strong><br>
-                        Operasi kurang memerintahkan robot <em>berbalik ke kiri</em>, lalu bilangan negatif memerintahkannya <em>mundur</em>. Karena menghadap kiri dan melangkah mundur, robot justru bergerak ke <strong>KANAN</strong>!
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mathematical Explanation & Step Narration Card -->
-            <div class="bg-white dark:bg-slate-800/95 text-slate-800 dark:text-slate-100 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-4 shadow-xl flex flex-col gap-2.5">
-                <div class="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    <span class="flex items-center gap-1.5">
-                        <i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i> Narasi Langkah Edukatif
-                    </span>
-                    <span id="current-phase-badge" class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-500 text-[10px] font-bold">Siap</span>
-                </div>
-
-                <div id="math-expression-display" class="text-xl sm:text-2xl font-black font-mono text-center py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-indigo-600 dark:text-indigo-300 tracking-wide">
-                    3 + (-5) = -2
-                </div>
-
-                <div id="step-by-step-narration" class="text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800/80 leading-relaxed min-h-[90px] flex flex-col justify-center">
-                    Klik tombol <strong>"Simulasikan 3D"</strong> untuk melihat pergerakan robot dan busur vektor pada garis bilangan.
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Right Panel: 3D Interactive Viewport (8 Cols) -->
-        <section class="lg:col-span-8 flex flex-col gap-4">
-            
-            <div class="relative bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex-1 min-h-[460px] lg:min-h-[580px] flex flex-col">
+            <!-- Right Panel: 3D Interactive Viewport (Lebih Luas & Proporsional: 7 Kolom) -->
+            <section class="lg:col-span-7 flex flex-col gap-5 w-full">
                 
-                <!-- Viewport Top Floating HUD -->
-                <div class="absolute top-4 left-4 right-4 z-10 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+                <div class="relative bg-slate-950 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex-1 min-h-[500px] lg:min-h-[660px] flex flex-col">
                     
-                    <!-- Status Indicator Badge -->
-                    <div class="pointer-events-auto bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-2 shadow-lg">
-                        <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span id="status-text">Siap untuk simulasi</span>
+                    <!-- Viewport Top Floating HUD -->
+                    <div class="absolute top-4 left-4 right-4 z-10 flex flex-wrap items-center justify-between gap-2.5 pointer-events-none">
+                        
+                        <!-- Status Indicator Badge -->
+                        <div class="pointer-events-auto bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-slate-700/80 text-xs sm:text-sm font-semibold text-slate-200 flex items-center gap-2.5 shadow-lg">
+                            <span id="status-dot" class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span id="status-text">Siap untuk simulasi</span>
+                        </div>
+
+                        <!-- Camera and View Angles -->
+                        <div class="pointer-events-auto flex items-center gap-1.5 bg-slate-900/85 backdrop-blur-md p-1.5 rounded-2xl border border-slate-700/80 shadow-lg">
+                            <button onclick="resetCamera('iso')" class="px-3 py-1.5 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-xl text-xs sm:text-sm font-bold transition-colors flex items-center gap-1.5" title="Sudut Isometrik 3D">
+                                <i class="fa-solid fa-cube text-indigo-400"></i>
+                                <span class="hidden sm:inline">Perspektif</span>
+                            </button>
+                            <button onclick="resetCamera('front')" class="px-3 py-1.5 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-xl text-xs sm:text-sm font-bold transition-colors flex items-center gap-1.5" title="Tampak Depan (2D Orthografis)">
+                                <i class="fa-solid fa-arrows-left-right text-emerald-400"></i>
+                                <span class="hidden sm:inline">Garis Lurus</span>
+                            </button>
+                            <button onclick="resetCamera('top')" class="px-3 py-1.5 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-xl text-xs sm:text-sm font-bold transition-colors flex items-center gap-1.5" title="Tampak Atas">
+                                <i class="fa-solid fa-arrow-down text-amber-400"></i>
+                                <span class="hidden sm:inline">Atas</span>
+                            </button>
+                        </div>
+
                     </div>
 
-                    <!-- Camera and View Angles -->
-                    <div class="pointer-events-auto flex items-center gap-1 bg-slate-900/80 backdrop-blur-md p-1 rounded-xl border border-slate-700/80 shadow-lg">
-                        <button onclick="resetCamera('iso')" class="px-2.5 py-1.5 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5" title="Sudut Isometrik 3D">
-                            <i class="fa-solid fa-cube text-indigo-400"></i>
-                            <span class="hidden sm:inline">Perspektif</span>
-                        </button>
-                        <button onclick="resetCamera('front')" class="px-2.5 py-1.5 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5" title="Tampak Depan (2D Orthografis)">
-                            <i class="fa-solid fa-arrows-left-right text-emerald-400"></i>
-                            <span class="hidden sm:inline">Garis Lurus</span>
-                        </button>
-                        <button onclick="resetCamera('top')" class="px-2.5 py-1.5 hover:bg-slate-700/80 text-slate-300 hover:text-white rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5" title="Tampak Atas">
-                            <i class="fa-solid fa-arrow-down text-amber-400"></i>
-                            <span class="hidden sm:inline">Atas</span>
-                        </button>
+                    <!-- 3D Canvas Mount Point with generous height -->
+                    <div id="canvas-container" class="canvas-container w-full flex-1 relative min-h-[500px] lg:min-h-[660px] cursor-grab active:cursor-grabbing"></div>
+
+                    <!-- Viewport Bottom Floating Legend & Speed Slider -->
+                    <div class="absolute bottom-4 left-4 right-4 z-10 flex flex-col sm:flex-row items-center justify-between gap-3 pointer-events-none">
+                        
+                        <!-- Color Legend -->
+                        <div class="pointer-events-auto flex flex-wrap items-center gap-2.5 bg-slate-900/85 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-700/80 text-xs shadow-lg text-slate-200">
+                            <span class="flex items-center gap-1.5 font-bold text-emerald-400">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span> Tahap 1 (0 → A)
+                            </span>
+                            <span class="text-slate-600">|</span>
+                            <span class="flex items-center gap-1.5 font-bold text-amber-400">
+                                <span class="w-3 h-3 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></span> Tahap 2 (A → Hasil)
+                            </span>
+                            <span class="text-slate-600">|</span>
+                            <span class="flex items-center gap-1.5 font-bold text-violet-400">
+                                <span class="w-3 h-3 rounded-full bg-violet-500 shadow-sm shadow-violet-500/50"></span> Titik Akhir
+                            </span>
+                        </div>
+
+                        <!-- Animation Speed Controller -->
+                        <div class="pointer-events-auto bg-slate-900/85 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-700/80 flex items-center gap-2.5 text-xs sm:text-sm text-slate-300 shadow-lg">
+                            <span class="text-slate-400 flex items-center gap-1.5 font-bold">
+                                <i class="fa-solid fa-gauge-high text-indigo-400"></i> Speed:
+                            </span>
+                            <input type="range" id="anim-speed" min="0.5" max="2.5" step="0.25" value="1" class="w-20 accent-indigo-500 cursor-pointer">
+                            <span id="speed-label" class="font-mono font-bold text-xs sm:text-sm text-indigo-300 w-8">1.0x</span>
+                        </div>
+
                     </div>
 
                 </div>
 
-                <!-- 3D Canvas Mount Point with explicit height & styling -->
-                <div id="canvas-container" class="canvas-container w-full flex-1 relative min-h-[460px] lg:min-h-[580px] cursor-grab active:cursor-grabbing"></div>
-
-                <!-- Viewport Bottom Floating Legend & Speed Slider -->
-                <div class="absolute bottom-4 left-4 right-4 z-10 flex flex-col sm:flex-row items-center justify-between gap-2 pointer-events-none">
-                    
-                    <!-- Color Legend -->
-                    <div class="pointer-events-auto flex flex-wrap items-center gap-2 bg-slate-900/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/80 text-[11px] shadow-lg text-slate-200">
-                        <span class="flex items-center gap-1.5 font-medium text-emerald-400">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span> Tahap 1 (0 → A)
-                        </span>
-                        <span class="text-slate-600">|</span>
-                        <span class="flex items-center gap-1.5 font-medium text-amber-400">
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></span> Tahap 2 (A → Hasil)
-                        </span>
-                        <span class="text-slate-600">|</span>
-                        <span class="flex items-center gap-1.5 font-medium text-violet-400">
-                            <span class="w-2.5 h-2.5 rounded-full bg-violet-500 shadow-sm shadow-violet-500/50"></span> Titik Akhir
-                        </span>
-                    </div>
-
-                    <!-- Animation Speed Controller -->
-                    <div class="pointer-events-auto bg-slate-900/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/80 flex items-center gap-2 text-xs text-slate-300 shadow-lg">
-                        <span class="text-slate-400 flex items-center gap-1">
-                            <i class="fa-solid fa-gauge-high text-indigo-400"></i> Speed:
-                        </span>
-                        <input type="range" id="anim-speed" min="0.5" max="2.5" step="0.25" value="1" class="w-20 accent-indigo-500 cursor-pointer">
-                        <span id="speed-label" class="font-mono text-[11px] text-indigo-300 w-6">1.0x</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
+            </section>
         </main>
     </div>
 
